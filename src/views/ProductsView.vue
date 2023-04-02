@@ -7,7 +7,9 @@
     </section>
     <section class="accessory bd-container section product" id="accessory">
       <div class="accessory__container bd-grid">
-        <product  v-for="product in products" :key="product.id" :product="product" />
+        <router-link :to="{ name: 'detail', params: { id: product.id } }"  v-for="product in products" :key="product.id">
+        <product  :product="product" />
+        </router-link>
        
       </div>
     </section>
@@ -17,7 +19,7 @@
 
 <script>
 import Product from "@/components/Product.vue";
-import SelectElement from '@/components/SelectElement.vue';
+import SelectElement from "@/components/SelectElement.vue";
 import { mapState } from "vuex";
 export default {
   components: { Product, SelectElement },
@@ -32,15 +34,14 @@ export default {
 .filter {
   display: flex;
   justify-content: space-between;
-  
 }
 .product {
-  padding-top: 20px ;
+  padding-top: 20px;
 }
-@media screen and (max-width:843px) {
+@media screen and (max-width: 843px) {
   .filter {
     flex-direction: column;
-   
+
     gap: 20px;
     align-items: center;
   }

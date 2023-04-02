@@ -1,0 +1,288 @@
+{
+  "products": [
+    {
+      "id": 6,
+      "title": "Apple iPhone 11",
+      "image": "https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/12/646235/1.jpg?8352",
+      "price": 760,
+      "category": "Featured Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 3,
+      "title": "Sony WH-CH510",
+      "image": "https://www.zinabel.ma/3315-large_default/fond-de-teint-liquid-coverage-hd-catrice.jpg",
+      "price": 265,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 4,
+      "title": "Apple iPhone 11",
+      "image": "https://www.maybelline.fr/~/media/mny/fr/face-makeup/foundation/fond-de-teint-liquide-fit-me-matte-poreless/new%20packshots/a2xibvlpn4dgp9guuqtvr01htuc49k50.jpg?thn=0&w=380&hash=F4F70BD2FCB6A288C3CD4DAB3B3A905DF0E81E80",
+      "price": 850,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 8,
+      "title": "Apple iPhone 11",
+      "image": "https://facesbeauty.ma/media/catalog/product/cache/de34c06b37f1ee016aa34cb208ea9fce/l/_/l_essentiel_fond_de_teint_clat_naturel_tenue_16h_ip_20_01n_trs_clair_seps9pu6um8b7uos.jpg",
+      "price": 290,
+      "category": "Featured Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 5,
+      "title": "Sony WH-CH510",
+      "image": "https://samirapharm.com/529-home_default/complete-coverage-concealer-cov.jpg",
+      "price": 250,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 7,
+      "title": "Sony WH-CH510",
+      "image": "https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dwfd95c220/images/hi-res/SKU/SKU_3397/612177_swatch.jpg?sw=240&sh=240&sm=fit",
+      "price": 365,
+      "category": "Featured Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 10,
+      "title": "Apple iPhone 11 Pro",
+      "image": "https://sdcdn.io/mac/fr/mac_sku_M2206R_1x1_0.png?width=1440&height=1440",
+      "price": 385,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 11,
+      "title": "Sony WH-CH510",
+      "image": "data:image/jpeg;base64,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",
+      "price": 475,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 13,
+      "title": "Apple iPhone 11",
+      "image": "https://univers-1d470.kxcdn.com/7750-square_large_default/foreo-foreo-luna-mini-2-fushia-visage.jpg",
+      "price": 800,
+      "category": "Trending Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 12,
+      "title": "Sony WH-CH510",
+      "image": "https://cdn.notinoimg.com/images/gallery/spage/thumbnail_SMALL_CATEGORY_BANNERS_320x350_3_20190418_15.jpg",
+      "price": 850,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 14,
+      "title": "Sony WH-CH510",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH9y9j9ja4tdwA-27rhn6szQ8xkyYr75oYMT2xFzhlFzHmPuIxBpkE2yCkcGrjx1-CWj8&usqp=CAU",
+      "price": 360,
+      "category": "Trending Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 9,
+      "title": "Sony WH-CH510",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwuLyvOLta5Kb2eOXA-x5SWsUt5jEK6zez2w&usqp=CAU",
+      "price": 320,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 15,
+      "title": "Sony WH-CH510",
+      "image": "http://www.originalpara.ma/web/image/product.template/9315/image_1024?unique=91836e4",
+      "price": 305,
+      "category": "Trending Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 16,
+      "title": "Samsung Galaxy",
+      "image": "https://www.zinabel.ma/4912-large_default/rouge-a-levres-liquide-longue-tenue-golden-rose.jpg",
+      "price": 400,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 17,
+      "title": "Samsung Galaxy",
+      "image": "https://cdn.shopify.com/s/files/1/0013/1111/3321/products/206220_swatch_800x.jpg?v=1556146380",
+      "price": 550,
+      "category": "Trending Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 2,
+      "title": "Apple iPhone 11",
+      "image": "https://flormar.ma/content/uploads/2022/01/33000116-001.png",
+      "price": 300,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 18,
+      "title": "Sony WH-CH510",
+      "image": "https://sobio-etic.com/wp-content/uploads/Photo_CI/rougealevres-11-rosedivin.jpg",
+      "price": 630,
+      "category": "Trending Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 20,
+      "title": "Samsung Galaxy",
+      "image": "https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/42/814053/1.jpg?3110",
+      "price": 270,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 19,
+      "title": "Sony WH-CH510",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7iHoDJ8Rxz9Bud73Ex2P84aBWNuXfE7mXxg&usqp=CAU",
+      "price": 250,
+      "category": "Trending Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 1,
+      "title": "Sony WH-CH510",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSrv__-9MPjtizsjRXx0Q-R8gC1dN-lVO-ig&usqp=CAU",
+      "price": 265,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 24,
+      "title": "Samsung Galaxy",
+      "image": "https://images.kikocosmetics.com/sys-master/images/hae/h67/11143592673310/KC000000192003Bprincipale_480Wx480H",
+      "price": 500,
+      "category": "Featured Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 21,
+      "title": "Sony WH-CH510",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRptijhObDGxAVIulZfOZu2XzaIDQndC9bMO2lS_Y_j1ZsMVZ08rj13bx8maUFoEs7JzRI&usqp=CAU",
+      "price": 700,
+      "category": "Trending Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 25,
+      "title": "Samsung Galaxy",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSEqrNk7sJe0mYh5bWVtLe3OmPAUqH9UkYsnO-V43lWtgRTm_NvH2LDUkGajB3zQ7s534&usqp=CAU",
+      "price": 450,
+      "category": "Special Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 22,
+      "title": "Samsung Galaxy",
+      "image": "https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/666944/1.jpg?9245",
+      "price": 460,
+      "category": "Face makeup",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    },
+    {
+      "id": 23,
+      "title": "Sony WH-CH510",
+      "image": "data:image/jpeg;base64,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",
+      "price": 600,
+      "category": "Featured Products",
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+    }
+  ],
+  "cart": [
+    {
+      "id": 8,
+      "title": "Apple iPhone 11",
+      "image": "./images/products/iphone/iphone4.jpeg",
+      "price": 290,
+      "category": "Featured Products",
+      "quantity": 1
+    },
+    {
+      "id": 6,
+      "title": "Apple iPhone 11",
+      "image": "./images/products/iphone/iphone3.jpeg",
+      "price": 760,
+      "category": "Featured Products",
+      "quantity": 3
+    },
+    {
+      "id": 3,
+      "title": "Sony WH-CH510",
+      "image": "./images/products/headphone/headphone2.jpeg",
+      "price": 265,
+      "category": "Special Products",
+      "quantity": 2
+    },
+    {
+      "id": 14,
+      "title": "Sony WH-CH510",
+      "image": "./images/products/headphone/headphone7.jpeg",
+      "price": 360,
+      "category": "Trending Products",
+      "quantity": 1
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "product_id": 3,
+      "name": "John Smith",
+      "job": "Founder at Apple",
+      "image": "./images/profile1.jpg",
+      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
+    },
+    {
+      "id": 2,
+      "product_id": 3,
+      "name": "John Smith",
+      "job": "Founder at Apple",
+      "image": "./images/profile1.jpg",
+      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
+    },
+    {
+      "id": 3,
+      "product_id": 3,
+      "name": "John Smith",
+      "job": "Founder at Apple",
+      "image": "./images/profile1.jpg",
+      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
+    },
+    {
+      "id": 4,
+      "product_id": 3,
+      "name": "John Smith",
+      "job": "Founder at Apple",
+      "image": "./images/profile1.jpg",
+      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
+    },
+    {
+      "id": 4,
+      "product_id": 3,
+      "name": "John Smith",
+      "job": "Founder at Apple",
+      "image": "./images/profile1.jpg",
+      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
+    },
+    {
+      "id": 5,
+      "product_id": 3,
+      "name": "John Smith",
+      "job": "Founder at Apple",
+      "image": "./images/profile1.jpg",
+      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
+    }
+  ]
+}

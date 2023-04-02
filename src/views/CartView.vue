@@ -15,12 +15,8 @@
                     <th>TOTAL</th>
                   </tr>
                 </thead>
-                <tbody>
-                 <cart />
-                 <cart />
-                 <cart />
-
-                 <cart />
+                <tbody> 
+                 <cart v-for="product in cart" :key="product.id" :product="product" />
                 </tbody>
               </table>
             </div>
@@ -63,8 +59,13 @@
 <script>
 import ButtonShopNow from "@/components/ButtonShopNow.vue";
 import Cart from '@/components/Cart.vue';
+import { mapState } from "vuex";
 export default {
   components: { ButtonShopNow, Cart },
+  created() {
+    this.$store.dispatch("fetchCart");
+  },
+  computed: mapState(["cart"]),
 };
 </script>
 

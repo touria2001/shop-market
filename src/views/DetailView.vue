@@ -3,7 +3,7 @@
     <section class="share bd-container section detail" id="share">
       <div class="share__container bd-grid">
         <div class="share__data">
-          <h2 class="section-title-center">Name product</h2>
+          <h2 class="section-title-center">{{ product.title }}</h2>
           <div class="reviews">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -12,8 +12,7 @@
             <i class="far fa-star"></i>
           </div>
           <p class="share__description">
-            description -> Sharing this holidays is the best gift you can give,
-            give a present or share your love with people you love.
+            {{ product.description }}
           </p>
           <span class="share__description">quantity: </span>
           <quantity />
@@ -21,10 +20,7 @@
         </div>
 
         <div class="share__img">
-          <img
-            src="https://static.galerieslafayette.com/media/796/79691774/G_79691774_378_360x393_1.jpg"
-            alt=""
-          />
+          <img v-bind:src="product.image" alt="" />
         </div>
       </div>
     </section>
@@ -69,20 +65,42 @@
 import ButtonShopNow from "@/components/ButtonShopNow.vue";
 import Review from "@/components/Review.vue";
 import Quantity from "@/components/Quantity.vue";
+import ProductService from "@/services/ProductService";
 export default {
   components: { ButtonShopNow, Review, Quantity },
+  props: ["id"],
+  data() {
+    return {
+      product: {},
+    };
+  },
+  created() {
+    ProductService.getProduct(this.id)
+      .then((response) => (this.product = response.data))
+      .catch((error) => {
+        console.log(error.response);
+      });
+  },
 };
 </script>
 
 <style>
+.share__img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 416px;
+}
+.share__img img {
+  align-self: stretch;
+}
 .input-counter {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
- 
 }
 .input-counter input {
- background-color: transparent;
+  background-color: transparent;
 }
 .input-counter div {
   display: flex;
@@ -262,5 +280,10 @@ a {
 ::selection {
   color: #ffffff;
   background-color: #252525;
+}
+@media screen and (max-width: 576px) {
+  .input-counter {
+    justify-content: center;
+  }
 }
 </style>

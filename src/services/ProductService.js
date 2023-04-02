@@ -10,13 +10,13 @@ const apiClient = axios.create({
 })
 
 export default {
-  getMakeUpProducts() {
+  getProducts() {
     return apiClient.get('/products')
   },
-  getMakeUpProduct(id) {
+  getProduct(id) {
     return apiClient.get(`/products/${id}`)
   },
-  postMakeUpProduct(makeUpProduct) {
-    return apiClient.post('/products', makeUpProduct)
+  postProduct(product) {
+    return apiClient.post('/products', product)
   },
 }
