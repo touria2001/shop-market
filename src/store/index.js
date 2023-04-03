@@ -3,12 +3,14 @@ import Vuex from 'vuex'
 
 import ProductService from '@/services/ProductService'
 import CartService from '@/services/CartService'
+import UserService from '@/services/UserService'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     user: { id: 'abc', name: 'hicham maaqoul' },
+    users: [],
     categories: [
 
     ],
@@ -33,8 +35,8 @@ export default new Vuex.Store({
       state.cart = cart
     },
     SET_QUANTITY(state, product) {
-      state.cart = state.cart.map((e)=>{
-        if(e.id === product.id) {
+      state.cart = state.cart.map((e) => {
+        if (e.id === product.id) {
           e.quantity = product.quantity;
         }
         return e;
@@ -43,6 +45,12 @@ export default new Vuex.Store({
     DELETE_PRODUCT_FROM_CART(state, id) {
       index = state.cart.findIndex(car => car.id == id);
       state.cart.splice(index, 1);
+    },
+    SIGN_UP(state, user) {
+      state.users.push(user);
+    },
+    SET_USERS(state, users) {
+      state.users = users;
     }
 
   },
@@ -93,14 +101,38 @@ export default new Vuex.Store({
     setQuantity({ commit }, product) {
       CartService.putProduct(product).then((response) => {
         commit('SET_QUANTITY', response.data)
+      }).catch((error) => {
+        console.error(error.message)
       })
     },
-    deleteProductFromCart({commit}, id) {
+    deleteProductFromCart({ commit }, id) {
       CartService.deleteProduct(id).then((response) => {
-        
+
         commit('DELETE_PRODUCT_FROM_CART', id)
+      }).catch((error) => {
+        console.error(error.message)
+      })
+    },
+    signUp({ commit }, user) {
+      let successSignUp = true;
+      UserService.postUser(user).then((response) => {
+        commit('SIGN_UP', user)
+      }).catch((error) => {
+        console.error(error.message)
+        successSignUp = false;
+      })
+      return successSignUp;
+    },
+    getUsers({ commit }, email) {
+      UserService.getUsers().then((response) => {
+        commit('SET_USERS', response.data)
+      }).catch((error) => {
+        console.error(error.message)
       })
     }
+
+
+
   },
   modules: {},
 })

@@ -208,7 +208,7 @@
       "image": "./images/products/iphone/iphone4.jpeg",
       "price": 290,
       "category": "Featured Products",
-      "quantity": 1
+      "quantity": 14
     },
     {
       "id": 6,
@@ -283,6 +283,128 @@
       "job": "Founder at Apple",
       "image": "./images/profile1.jpg",
       "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
+    }
+  ],
+  "users": [
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "touria",
+      "password": "12345678p",
+      "id": 1
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "touria",
+      "password": "12345678gf",
+      "id": 2
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "touria",
+      "password": "123456789m",
+      "id": 3
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "touria",
+      "password": "87646463132fdsf",
+      "id": 4
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "touria",
+      "password": "87646463132fdsf",
+      "id": 5
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "ouira",
+      "password": "84654dsfdfd",
+      "id": 6
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "touria",
+      "password": "fsdfdfdgdfgfdg544",
+      "id": 7
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "touria",
+      "password": "dfdgdfgdfg56453",
+      "id": 8
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "touria",
+      "password": "7646646fdfdfdf",
+      "id": 9
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "touia",
+      "password": "gfdgfdgfd454fg",
+      "id": 10
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "tfgfg",
+      "password": "hjhgjgh465454",
+      "id": 11
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "tfgfg",
+      "password": "hjhgjgh465454",
+      "id": 12
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "tfgfg",
+      "password": "hjhgjgh465454",
+      "id": 13
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "tfgfg",
+      "password": "hjhgjgh465454",
+      "id": 14
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "tfgfg",
+      "password": "hjhgjgh465454",
+      "id": 15
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "tfgfg",
+      "password": "hjhgjgh465454",
+      "id": 16
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "tfgfg",
+      "password": "hjhgjgh465454",
+      "id": 17
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "tfgfg",
+      "password": "hjhgjgh465454",
+      "id": 18
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "tfgfg",
+      "password": "hjhgjgh465454",
+      "id": 19
+    },
+    {
+      "email": "abboutouria20010203@gmail.com",
+      "username": "tfgfg",
+      "password": "hjhgjgh465454",
+      "id": 20
     }
   ]
 }
