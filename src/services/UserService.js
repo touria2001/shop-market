@@ -21,8 +21,7 @@ export default {
   putUser(user) {
     return apiClient.put('/users/'+user.id, user)
   },
-  getUserById(id) {
-    console.log(id);
+  getUserById(id) {   
     return apiClient.get('/users/'+id);
   },
 

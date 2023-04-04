@@ -101,10 +101,10 @@ export default new Vuex.Store({
           console.error(error.message)
         })
     },
-    fetchCart({ commit }) {
-      CartService.getCart()
+    fetchCart({ commit }, id) {
+     UserService.getUserById(id)
         .then((response) => {
-          commit('SET_CART', response.data)
+          commit('SET_CART', response.data.cart)
         })
         .catch((error) => {
           console.error(error.message)

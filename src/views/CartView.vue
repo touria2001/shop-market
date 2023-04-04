@@ -63,7 +63,7 @@ import { mapState } from "vuex";
 export default {
   components: { ButtonShopNow, Cart },
   created() {
-    this.$store.dispatch("fetchCart");
+    this.$store.dispatch("fetchCart", sessionStorage.getItem("user"));
   },
   computed: mapState(["cart"]),
 };
