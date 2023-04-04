@@ -4,12 +4,13 @@ import Vuex from 'vuex'
 import ProductService from '@/services/ProductService'
 import CartService from '@/services/CartService'
 import UserService from '@/services/UserService'
+import VueRouter from 'vue-router'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: { id: 'abc', name: 'hicham maaqoul' },
+    user: {},
     users: [],
     categories: [
 
@@ -51,6 +52,17 @@ export default new Vuex.Store({
     },
     SET_USERS(state, users) {
       state.users = users;
+    },
+    SET_PRODUCT_TO_CART(state, user, product) {
+      state.users = state.users.map((e) => {
+        if (e.id === user.id) {
+          return { ...e, cart: [...e.cart, product] };
+        }
+        return e;
+      })
+    },
+    SET_USER(state, user) {
+      state.user = user;
     }
 
   },
@@ -126,6 +138,38 @@ export default new Vuex.Store({
     getUsers({ commit }, email) {
       UserService.getUsers().then((response) => {
         commit('SET_USERS', response.data)
+      }).catch((error) => {
+        console.error(error.message)
+      })
+    },
+   setProductInCart({ commit }, { product, id }) {
+
+       UserService.getUserById(id).then((response) => {
+        commit('SET_USER', { id: response.data.id });
+
+        let user = {
+          id: response.data.id,
+          username: response.data.username,
+          password: response.data.password, email: response.data.email,
+          cart: [...response.data.cart, product]
+        };
+
+        if (!response.data.cart.some((p) => p.id === product.id)) {
+
+          UserService.putUser(user).then((response) => {
+            commit('SET_PRODUCT_TO_CART', response.data, product)
+          }).catch((error) => {
+            console.error(error.message)
+          })
+        }
+      }).catch((error) => {
+        console.error(+ error.message)
+      })
+      
+    },
+    setUser({ commit }, id) {
+      UserService.getUserById(id).then((response) => {
+        commit('SET_USER', response.data)
       }).catch((error) => {
         console.error(error.message)
       })

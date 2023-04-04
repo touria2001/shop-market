@@ -1,5 +1,5 @@
 export default {
-    emailIsNotValide(email, users) {
+    emailIsNotValid(email, users) {
         let errors = [];
         let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (email === null || email.length === 0) {
@@ -11,7 +11,7 @@ export default {
         }
         return errors;
     },
-    userNameIsNotValide(userName) {
+    userNameIsNotValid(userName) {
         let errors = [];
         let regexUserName = new RegExp("^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$", "g");
         if (userName === null || userName.length === 0) {
@@ -24,7 +24,7 @@ export default {
         }
         return errors;
     },
-    passwordIsNotValide(password) {
+    passwordIsNotValid(password) {
         let errors = [];
         let regexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (password === null || password.length === 0) {
@@ -42,7 +42,8 @@ export default {
             errors.push(name + ' is required.')
         }
         return errors;
-    }
+    },
+
 
 
 }

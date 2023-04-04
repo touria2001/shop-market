@@ -118,7 +118,9 @@
 
 <script>
 import Validate from "@/validation/Validate";
+import Cookie from "@/cookies/Cookie";
 import { mapState } from "vuex";
+import VueRouter from "vue-router";
 export default {
   data() {
     return {
@@ -136,13 +138,15 @@ export default {
       failedLogin: false,
       email_sign_in: null,
       password_sign_in: null,
-      checked : false
+      checked: false,
     };
   },
   created() {
     this.$store.dispatch("getUsers");
+    
   },
   computed: mapState(["users"]),
+
   methods: {
     signInMethod() {
       this.signIn = true;
@@ -154,14 +158,14 @@ export default {
     },
     onSignUp(e) {
       e.preventDefault();
-      this.errorsEmailSignUp = Validate.emailIsNotValide(
+      this.errorsEmailSignUp = Validate.emailIsNotValid(
         this.email_signup,
         this.users
       );
-      this.errorsUserNameSignUp = Validate.userNameIsNotValide(
+      this.errorsUserNameSignUp = Validate.userNameIsNotValid(
         this.user_name_signup
       );
-      this.errorsPasswordSignUp = Validate.passwordIsNotValide(
+      this.errorsPasswordSignUp = Validate.passwordIsNotValid(
         this.password_signup
       );
 
@@ -190,9 +194,10 @@ export default {
         this.password_sign_in,
         "Password"
       );
+
       if (
         this.errorsEmailSignIn.length === 0 &&
-        this.errorsPasswordSignIn === 0
+        this.errorsPasswordSignIn.length === 0
       ) {
         this.users.forEach((user) => {
           if (
@@ -200,9 +205,25 @@ export default {
             user.password === this.password_sign_in
           ) {
             sessionStorage.setItem("user", user.id);
-            if(this.checked === true) {
-              document.cookie = "email; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+            if (this.checked === true) {
+              document.cookie =
+                "idMakeup=" +
+                user.id +
+                ";expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/";
+              document.cookie =
+                "usernameMakeup=" +
+                user.username +
+                ";expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/";
+              document.cookie =
+                "emailMakeup=" +
+                user.email +
+                ";expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/";
             }
+            // if (this.cart.length === 0) {
+            //   VueRouter.push({ name: "home" });
+            // } else {
+            //   VueRouter.push({ name: "checkout" });
+            // }
           }
         });
       }
@@ -217,16 +238,16 @@ export default {
       if (str === "userName") {
         this.errorsUserNameSignUp = [];
       }
-      if(str === "emailSignIn") {
+      if (str === "emailSignIn") {
         this.errorsEmailSignIn = [];
       }
-      if(str === "passwordSignIn") {
+      if (str === "passwordSignIn") {
         this.errorsPasswordSignIn = [];
       }
     },
     rememberMe() {
       this.checked = !this.checked;
-    }
+    },
   },
 };
 </script>

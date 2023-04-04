@@ -14,9 +14,9 @@
           <p class="share__description">
             {{ product.description }}
           </p>
-          <span class="share__description">quantity: </span>
-          <quantity />
-          <button-shop-now />
+          <!-- <span class="share__description">quantity: </span>
+           <quantity :product="product" /> -->
+          <button @click="addToCart(product)">shop now</button>
         </div>
 
         <div class="share__img">
@@ -66,6 +66,8 @@ import ButtonShopNow from "@/components/ButtonShopNow.vue";
 import Review from "@/components/Review.vue";
 import Quantity from "@/components/Quantity.vue";
 import ProductService from "@/services/ProductService";
+import Cookie from "@/cookies/Cookie";
+import VueRouter from "@/router/index";
 export default {
   components: { ButtonShopNow, Review, Quantity },
   props: ["id"],
@@ -80,6 +82,21 @@ export default {
       .catch((error) => {
         console.log(error.response);
       });
+  },
+  methods: {
+    addToCart(product) {
+     
+      if (sessionStorage.getItem("user") != null) {      
+        this.$store.dispatch(
+          "setProductInCart",
+          {product:product,
+          id: sessionStorage.getItem("user")}
+        );
+       VueRouter.push({ name: 'cart' });
+      } else {
+        VueRouter.push({ name: 'sign-in' });
+      }
+    },
   },
 };
 </script>

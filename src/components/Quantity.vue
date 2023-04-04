@@ -15,13 +15,11 @@ export default {
       type: Object,
       required: true,
     },
-  },
- 
+  }, 
   data() {
      return {
-      quantityData : this.product.quantity      
-     }
-   
+      quantityData : this.product.quantity? this.product.quantity :  1,      
+     }   
   },
   methods: {
     increase() {

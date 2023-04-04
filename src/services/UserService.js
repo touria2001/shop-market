@@ -18,9 +18,14 @@ export default {
     return apiClient.post('/users', user)
   },
   
-  putProduct(product) {
-    return apiClient.put('/users/'+product.id, product)
+  putUser(user) {
+    return apiClient.put('/users/'+user.id, user)
   },
+  getUserById(id) {
+    console.log(id);
+    return apiClient.get('/users/'+id);
+  },
+
   deleteProductFromCart(id) {
     return apiClient.delete('/users/'+id)
   }
