@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 import ProductService from '@/services/ProductService'
 import CartService from '@/services/CartService'
 import UserService from '@/services/UserService'
-import VueRouter from 'vue-router'
+import VueRouter from "@/router/index";
 
 Vue.use(Vuex)
 
@@ -135,6 +135,18 @@ export default new Vuex.Store({
       })
       return successSignUp;
     },
+    signIn({ commit }, id) {
+      UserService.getUserById(id).then((response) => {
+        commit('SET_USERS', { id: response.data.id })
+        if (response.data.cart != null && response.data.cart.length > 0) {
+          VueRouter.push({ name: 'cart' })
+        } else {
+          VueRouter.push({ name: 'home' })
+        }
+      }).catch((error) => {
+        console.error(error.message)
+      })
+    },
     getUsers({ commit }, email) {
       UserService.getUsers().then((response) => {
         commit('SET_USERS', response.data)
@@ -142,9 +154,9 @@ export default new Vuex.Store({
         console.error(error.message)
       })
     },
-   setProductInCart({ commit }, { product, id }) {
+    setProductInCart({ commit }, { product, id }) {
 
-       UserService.getUserById(id).then((response) => {
+      UserService.getUserById(id).then((response) => {
         commit('SET_USER', { id: response.data.id });
 
         let user = {
@@ -165,7 +177,7 @@ export default new Vuex.Store({
       }).catch((error) => {
         console.error(+ error.message)
       })
-      
+
     },
     setUser({ commit }, id) {
       UserService.getUserById(id).then((response) => {

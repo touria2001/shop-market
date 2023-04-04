@@ -49,7 +49,7 @@
                 autocomplete="off"
                 placeholder="Password"
                 v-model="password_signup"
-                @focus="deleteErrors('passwordSignIn')"
+                @focus="deleteErrors('password')"
               />
               <p v-if="errorsPasswordSignUp.length">    
                 <ul class="ul-error">
@@ -92,7 +92,7 @@
                 autocomplete="off"
                 placeholder="Password"
                 v-model="password_sign_in"
-                 @focus="deleteErrors('userName')"
+                 @focus="deleteErrors('password')"
               />
                <p v-if="errorsPasswordSignIn.length">    
                 <ul class="ul-error">
@@ -101,6 +101,11 @@
               </p>
               <input type="checkbox" class="checkbox" id="remember_me" v-model="checked" @click="rememberMe()"/>
               <label for="remember_me">Remember me</label>
+               <p v-if="errorsSignIn.length">    
+                <ul class="ul-error">
+                  <li v-for="error in errorsSignIn" >{{ error }}</li>
+                </ul>
+              </p>
               <input type="submit" class="button" value="Login" />
             </form>
            
@@ -134,6 +139,7 @@ export default {
       errorsUserNameSignUp: [],
       errorsEmailSignIn: [],
       errorsPasswordSignIn: [],
+      errorsSignIn: [],
       successfulSignUp: false,
       failedLogin: false,
       email_sign_in: null,
@@ -143,7 +149,6 @@ export default {
   },
   created() {
     this.$store.dispatch("getUsers");
-    
   },
   computed: mapState(["users"]),
 
@@ -194,7 +199,7 @@ export default {
         this.password_sign_in,
         "Password"
       );
-
+      let logged = false;
       if (
         this.errorsEmailSignIn.length === 0 &&
         this.errorsPasswordSignIn.length === 0
@@ -204,6 +209,7 @@ export default {
             user.email === this.email_sign_in &&
             user.password === this.password_sign_in
           ) {
+            logged = true;
             sessionStorage.setItem("user", user.id);
             if (this.checked === true) {
               document.cookie =
@@ -219,13 +225,12 @@ export default {
                 user.email +
                 ";expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/";
             }
-            // if (this.cart.length === 0) {
-            //   VueRouter.push({ name: "home" });
-            // } else {
-            //   VueRouter.push({ name: "checkout" });
-            // }
+            this.$store.dispatch("signIn", user.id);
           }
         });
+      }
+      if(logged == false) {
+        this.errorsSignIn.push("login failed")
       }
     },
     deleteErrors(str) {

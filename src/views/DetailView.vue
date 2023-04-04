@@ -84,8 +84,7 @@ export default {
       });
   },
   methods: {
-    addToCart(product) {
-     
+    addToCart(product) {     
       if (sessionStorage.getItem("user") != null) {      
         this.$store.dispatch(
           "setProductInCart",
