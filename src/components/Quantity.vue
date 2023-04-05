@@ -15,23 +15,32 @@ export default {
       type: Object,
       required: true,
     },
-  }, 
+  },
   data() {
-     return {
-      quantityData : this.product.quantity? this.product.quantity :  1,      
-     }   
+    return {
+      quantityData: this.product.quantity != null ? this.product.quantity : 1,
+    };
   },
   methods: {
     increase() {
       this.quantityData += 1;
       this.product.quantity = this.quantityData;
-       this.$store.dispatch('setQuantity',this.product)
+      this.$store.dispatch(
+        "setQuantity",
+        {
+        product: this.product,
+        id: sessionStorage.getItem("user"),
+      }
+      );
     },
-     decrease() {
-      if(this.quantityData === 1) return;
+    decrease() {
+      if (this.quantityData === 1) return;
       this.quantityData -= 1;
       this.product.quantity = this.quantityData;
-       this.$store.dispatch('setQuantity',this.product)
+      this.$store.dispatch("setQuantity", {
+        product: this.product,
+        id: sessionStorage.getItem("user"),
+      });
     },
   },
 };

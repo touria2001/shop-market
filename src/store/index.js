@@ -102,7 +102,8 @@ export default new Vuex.Store({
         })
     },
     fetchCart({ commit }, id) {
-     UserService.getUserById(id)
+
+      UserService.getUserById(id)
         .then((response) => {
           commit('SET_CART', response.data.cart)
         })
@@ -110,20 +111,45 @@ export default new Vuex.Store({
           console.error(error.message)
         })
     },
-    setQuantity({ commit }, product) {
-      CartService.putProduct(product).then((response) => {
-        commit('SET_QUANTITY', response.data)
-      }).catch((error) => {
-        console.error(error.message)
-      })
-    },
-    deleteProductFromCart({ commit }, id) {
-      CartService.deleteProduct(id).then((response) => {
+    setQuantity({ commit }, { product, id }) {
 
-        commit('DELETE_PRODUCT_FROM_CART', id)
+      let cart = [...this.state.cart.map((e) => {
+        if (e.id === product.id) {
+          return { ...e, quantity: product.quantity };
+        }
+        return e;
+      })]
+
+      UserService.putCartOfUser(id, cart).then((response) => {
+        commit('SET_QUANTITY', response.data.cart)
       }).catch((error) => {
         console.error(error.message)
       })
+
+
+    },
+
+  
+    deleteProduct({ commit }, { product, id }) {
+
+      let cart = this.state.cart.filter(p => p.id !== product.id);
+
+      try {
+
+        UserService.deleteProductFromCart(id, cart)
+
+          .then((response) => {
+
+            commit('REMOVE_FROM_CART', product.id);
+
+          })
+
+      } catch (error) {
+
+        console.log('--erreur---' + error);
+
+      }
+
     },
     signUp({ commit }, user) {
       let successSignUp = true;
@@ -155,7 +181,6 @@ export default new Vuex.Store({
       })
     },
     setProductInCart({ commit }, { product, id }) {
-
       UserService.getUserById(id).then((response) => {
         commit('SET_USER', { id: response.data.id });
 
@@ -175,7 +200,7 @@ export default new Vuex.Store({
           })
         }
       }).catch((error) => {
-        console.error(+ error.message)
+        console.error(error.message)
       })
 
     },

@@ -13,19 +13,26 @@ export default {
   getUsers() {
     return apiClient.get('/users')
   },
-  
+
   postUser(user) {
     return apiClient.post('/users', user)
   },
-  
+
   putUser(user) {
-    return apiClient.put('/users/'+user.id, user)
-  },
-  getUserById(id) {   
-    return apiClient.get('/users/'+id);
+    return apiClient.put('/users/' + user.id, user)
   },
 
-  deleteProductFromCart(id) {
-    return apiClient.delete('/users/'+id)
+  putCartOfUser(id, cart) {
+    return apiClient.patch('/users/' + id, { cart: cart })
+  },
+
+  getUserById(id) {
+    return apiClient.get('/users/' + id);
+  },
+
+  deleteProductFromCart(id, cart) {
+
+    return apiClient.patch('/users/' + id, { cart: cart })
+
   }
 }

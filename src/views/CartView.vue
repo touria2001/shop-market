@@ -15,7 +15,7 @@
                     <th>TOTAL</th>
                   </tr>
                 </thead>
-                <tbody> 
+                <tbody v-if="cart != null">                   
                  <cart v-for="product in cart" :key="product.id" :product="product" />
                 </tbody>
               </table>
@@ -23,7 +23,7 @@
 
             <div class="cart-btns">
               <div class="continue__shopping">
-                <button-shop-now />
+                <button@click="goToCheckOut()" >shop now</button>
               </div>
               <div class="check__shipping">
                 <input type="checkbox" />
@@ -36,7 +36,12 @@
               <ul>
                 <li>
                   Subtotal
-                  <span class="new__price">$250.99</span>
+                  <span class="new__price">$   {{
+                cart.reduce(
+                  (acc, item) => acc + item.price * item.quantity,
+                  0
+                ) 
+              }}</span>
                 </li>
                 <li>
                   Shipping
@@ -58,14 +63,24 @@
 
 <script>
 import ButtonShopNow from "@/components/ButtonShopNow.vue";
-import Cart from '@/components/Cart.vue';
+import Cart from "@/components/Cart.vue";
 import { mapState } from "vuex";
+import VueRouter from "@/router/index";
 export default {
   components: { ButtonShopNow, Cart },
   created() {
-    this.$store.dispatch("fetchCart", sessionStorage.getItem("user"));
+    if (sessionStorage.getItem("user") != null) {
+      this.$store.dispatch("fetchCart", sessionStorage.getItem("user"));
+    }
   },
   computed: mapState(["cart"]),
+  methods: {
+    goToCheckOut() {
+      if (this.cart != null && this.cart.length != 0) {
+        VueRouter.push({ name: "checkout" });
+      }
+    },
+  },
 };
 </script>
 
