@@ -178,15 +178,19 @@ export default new Vuex.Store({
     setProductInCart({ commit }, { product, id }) {
       UserService.getUserById(id).then((response) => {
         commit('SET_USER', { id: response.data.id });
-
+        let cartItem = [product];
+        if (response.data.cart != null) {
+          cartItem = [...response.data.cart, product];
+        }
         let user = {
           id: response.data.id,
           username: response.data.username,
           password: response.data.password, email: response.data.email,
-          cart: [...response.data.cart, product]
+          cart: cartItem 
         };
 
-        if (!response.data.cart.some((p) => p.id === product.id)) {
+
+        if ((response.data.cart != null && !response.data.cart.some((p) => p.id === product.id) || response.data.cart == null)) {
 
           UserService.putUser(user).then((response) => {
             commit('SET_PRODUCT_TO_CART', response.data, product)
@@ -206,7 +210,7 @@ export default new Vuex.Store({
         console.error(error.message)
       })
     },
-    cleanCartAfterConfirm({ commit },  idUser ) {
+    cleanCartAfterConfirm({ commit }, idUser) {
       let cart = [];
       UserService.deleteProductFromCart(idUser, cart)
         .then((response) => {

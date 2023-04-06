@@ -288,10 +288,20 @@
   ],
   "users": [
     {
-      "email": "abboutouria20010203@gmail.com",
+      "id": 1,
       "username": "touria",
       "password": "12345678p",
-      "id": 1
+      "email": "abboutouria20010203@gmail.com",
+      "cart": [
+        {
+          "id": 3,
+          "title": "Sony WH-CH510",
+          "image": "https://www.zinabel.ma/3315-large_default/fond-de-teint-liquid-coverage-hd-catrice.jpg",
+          "price": 265,
+          "category": "Special Products",
+          "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+        }
+      ]
     },
     {
       "email": "abboutouria20010203@gmail.com",
