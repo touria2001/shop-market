@@ -24,7 +24,7 @@
         <span class="new__price"
           >$
           {{
-                product.price *product.quantity,
+                product.price * product.quantity,
 
           }}</span
         >

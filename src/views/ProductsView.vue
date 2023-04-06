@@ -1,7 +1,7 @@
 <template>
   <main class="l-main">
     <section class="section bd-container filter">
-      <select-element :categories="categories" @category="setCategory"  />
+      <select-element :categories="categories" @category="setCategory" />
       <select-element :prices="prices" @price="setPrice" />
       <select-element :rating="ratingSelect" @rating="setRating" />
     </section>
@@ -25,6 +25,7 @@ import SelectElement from "@/components/SelectElement.vue";
 
 export default {
   components: { Product, SelectElement },
+  props: ['categoryName'],
   created() {
     this.$store.dispatch("fetchProducts");
     this.$store.dispatch("fetchCategories");

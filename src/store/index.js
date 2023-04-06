@@ -178,9 +178,9 @@ export default new Vuex.Store({
     setProductInCart({ commit }, { product, id }) {
       UserService.getUserById(id).then((response) => {
         commit('SET_USER', { id: response.data.id });
-        let cartItem = [product];
+        let cartItem = [{...product,quantity: 1}];
         if (response.data.cart != null) {
-          cartItem = [...response.data.cart, product];
+          cartItem = [...response.data.cart, {...product,quantity: 1}];
         }
         let user = {
           id: response.data.id,

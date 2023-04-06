@@ -1,9 +1,11 @@
 <template>
-<div>lllll {{ categoryName }}</div>
-  <!-- <div class="box" v-if="categories != null">
+
+  <div class="box" v-if="categories != null">
    
-    <select class="mydropdown" v-model="categoryValue" @change="emitCategory()">
-     
+    <select class="mydropdown" v-model="categoryValue" @change="emitCategory()">   
+    
+      
+      </option>  
       <option v-for="option in categories" :value="option">
         {{ option }}
       </option>
@@ -23,44 +25,42 @@
         {{ option }}
       </option>
     </select>
-  </div> -->
+  </div>
+  
 </template>
 
 <script>
 export default {
-  // props: {
-  //   categories: {
-  //     type: [],
-  //   },
-  //   prices: {
-  //     type: [],
-  //   },
-  //   rating: {
-  //     type: [],
-  //   },
-  //   categoryName: {
-  //     type: String,
-  //   },
-  // },
-  props: ['categoryName'],
+  props: {
+    categories: {
+      type: [],
+    },
+    prices: {
+      type: [],
+    },
+    rating: {
+      type: [],
+    }
+  },
+ 
   data() {
     return {
-      // categoryValue: this.categoryName !=null ? categoryName: null,
-      // priceValue: null,
-      // ratingValue: null,
+      categoryValue:  null,
+      priceValue: null,
+      ratingValue: null,
     };
   },
   methods: {
-    // emitCategory() {
-    //   console.log("dsfds"+this.categoryName)
-    //   this.$emit("category", this.categoryValue);
-    // },
-    // emitPrice() {
-    //   this.$emit("price", this.priceValue);
-    // },
-    // emitRating() {
-    //   this.$emit("rating", this.ratingValue);
-    // },
+    emitCategory() {
+      
+      this.$emit("category", this.categoryValue);
+    },
+    emitPrice() {
+      this.$emit("price", this.priceValue);
+    },
+    emitRating() {
+      this.$emit("rating", this.ratingValue);
+    },
   },
 };
 </script>

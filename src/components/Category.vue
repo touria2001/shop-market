@@ -6,7 +6,7 @@
       class="decoration__img"
     />
     <h3 class="decoration__title">{{ category }}</h3>
-    <router-link  :to="{ name: 'products', params: { categoryName: 5 } }">
+    <router-link  :to="{ name: 'products', params: { categoryName: category } }">
     <a href="#" class="button button-link">Go Shopping</a>
     </router-link>
   </div>

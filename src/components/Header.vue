@@ -10,17 +10,10 @@
         <ul class="nav-list">
           <li class="nav__item">
             <router-link to="/">
-              <a   @click="
-                  itemActive = {
-                    home: true,
-                    products: false,
-                    category: false,
-                    login: false,
-                  }
-                "
+              <a  
                 href=""
                 class="nav__link"
-                :class="itemActive.home ? 'active-link' : ''"
+                
                 >Home</a
               ></router-link
             >
@@ -30,49 +23,28 @@
               ><a
                 href="#share"
                 class="nav__link"
-                :class="itemActive.products ? 'active-link' : ''"
-                @click="
-                  itemActive = {
-                    home: false,
-                    products: true,
-                    category: false,
-                    login: false,
-                  }
-                "
+               
+              
                 >Products</a
               ></router-link
             >
           </li>
           <li class="nav__item">
             <router-link to="/#decoration"
-              ><a   @click="
-                  itemActive = {
-                    home: false,
-                    products: false,
-                    category: true,
-                    login: false,
-                  }
-                "
+              ><a  
                 href=""
                 class="nav__link"
-                :class="itemActive.category ? 'active-link' : ''"
+               
                 >Categories</a
               ></router-link
             >
           </li>
           <li class="nav__item">
             <router-link to="/sign-in"
-              ><a   @click="
-                  itemActive = {
-                    home: false,
-                    products: false,
-                    category: false,
-                    login: true,
-                  }
-                "
+              ><a  
                 href=""
                 class="nav__link"
-                :class="itemActive.login ? 'active-link' : ''"
+               
                 >Login</a
               ></router-link
             >
@@ -99,12 +71,7 @@ export default {
   data() {
     return {
       showMobileMenu: false,
-      itemActive: {
-        home: true,
-        products: false,
-        category: false,
-        login: false,
-      },
+     
     };
   },
   methods: {

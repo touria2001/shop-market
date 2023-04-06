@@ -658,11 +658,11 @@ img {
 }
 
 /*----ACTIVE MENU LINKS----*/
-.active-link {
+.nav__item {
   position: relative;
 }
 
-.active-link::before {
+.nav__item:active::before {
   content: "";
   position: absolute;
   bottom: -0.5rem;
