@@ -12,16 +12,13 @@ export default new Vuex.Store({
   state: {
     user: {},
     users: [],
-    categories: [
-
-    ],
+    categories: [],
     products: [],
     featuredProducts: [],
-    cart: []
+    cart: [],
+    reviews: [],
   },
-  getters: {
-    catLength: (state) => state.categories.length,
-  },
+ 
   mutations: {
     SET_PRODUCTS(state, products) {
       state.products = products
@@ -34,6 +31,12 @@ export default new Vuex.Store({
     },
     SET_CART(state, cart) {
       state.cart = cart
+    },
+    ADD_TO_REVIEWS(state, review) {
+      state.reviews.push(review)
+    },
+    SET_REVIEWS(state, reviews) {
+      state.reviews = reviews
     },
     SET_QUANTITY(state, product) {
       state.cart = state.cart.map((e) => {
@@ -66,7 +69,7 @@ export default new Vuex.Store({
     },
     CLEAN_CART(state) {
       state.cart = [];
-    }
+    }, 
   },
   actions: {
     fetchProducts({ commit }) {
@@ -178,9 +181,10 @@ export default new Vuex.Store({
     setProductInCart({ commit }, { product, id }) {
       UserService.getUserById(id).then((response) => {
         commit('SET_USER', { id: response.data.id });
-        let cartItem = [{...product,quantity: 1}];
+        product = {...product,quantity: 1};
+        let cartItem = [product];
         if (response.data.cart != null) {
-          cartItem = [...response.data.cart, {...product,quantity: 1}];
+          cartItem = [...response.data.cart, product];
         }
         let user = {
           id: response.data.id,
@@ -192,8 +196,9 @@ export default new Vuex.Store({
 
         if ((response.data.cart != null && !response.data.cart.some((p) => p.id === product.id) || response.data.cart == null)) {
 
-          UserService.putUser(user).then((response) => {
+          UserService.putUser(user).then(() => {
             commit('SET_PRODUCT_TO_CART', response.data, product)
+            commit('SET_CART',response.data.cart)
           }).catch((error) => {
             console.error(error.message)
           })
@@ -218,6 +223,39 @@ export default new Vuex.Store({
         }).catch((error) => {
           console.error(error.message)
         })
+    },
+    addReview({ commit }, { id, review }) {
+
+      ProductService.getProduct(id)
+        .then((response) => {
+
+          if (response.data.reviews != null) {            
+            this.state.reviews = [...response.data.reviews, review];
+          }
+          else {
+            this.state.reviews.push(review);
+          }
+          try {
+            ProductService.addReviewAboutProduct(id, this.state.reviews)
+              .then(() => {
+                commit('ADD_TO_REVIEWS', review);
+                ProductService.getProduct(id)
+                  .then((response) => {
+                    commit('SET_PRODUCT', response.data);
+                  })
+                  .catch((error) => {
+                    console.error( error.message)
+                  });
+                
+              })
+          } catch (error) {
+            console.log( error);
+          }
+        })
+        .catch((error) => {
+          console.error(error.message)
+        });
+
     },
 
 

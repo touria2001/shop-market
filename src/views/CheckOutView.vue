@@ -18,9 +18,9 @@
                 :disabled='confirm'
                 />
                 
-                 <p v-if="errorsEmail.length">    
+                 <p v-if="errorsFullName.length">    
                 <ul class="ul-error">
-                  <li v-for="error in errorsEmail" >{{ error }}</li>
+                  <li v-for="error in errorsFullName" >{{ error }}</li>
                 </ul></p>
                 <label for="email"> Email</label>
                 <input
@@ -30,7 +30,7 @@
                   placeholder="john@example.com"
                   @focus="deleteErrors('email')"
                   v-model ="email"
-                  disabled
+                  :disabled='confirm'
                 
                 />
                   <p v-if="errorsEmail.length">    
@@ -47,13 +47,15 @@
                   id="adr"
                   name="address"
                   placeholder="542 W. 15th Street"
+                  :disabled='confirm'
                 />
-                 <p v-if="errorsEmail.length">    
+                 <p v-if="errorsAdress.length">    
                 <ul class="ul-error">
-                  <li v-for="error in errorsEmail" >{{ error }}</li>
+                  <li v-for="error in errorsAdress" >{{ error }}</li>
                 </ul></p>
                 <label for="city"> City</label>
                 <input
+                :disabled='confirm'
                  v-model="city"
                 @focus="deleteErrors('city')"
                   type="text"
@@ -61,14 +63,15 @@
                   name="city"
                   placeholder="New York"
                 />
- <p v-if="errorsEmail.length">    
+ <p v-if="errorsCity.length">    
                 <ul class="ul-error">
-                  <li v-for="error in errorsEmail" >{{ error }}</li>
+                  <li v-for="error in errorsCity" >{{ error }}</li>
                 </ul></p>
                 <div class="row">
                   <div class="col-50">
                     <label for="state">State</label>
                     <input
+                    :disabled='confirm'
                       type="text"
                       id="state"
                       name="state"
@@ -76,14 +79,15 @@
                          v-model="state"
                     @focus="deleteErrors('state')"
                     />
-                    <p v-if="errorsEmail.length">    
+                    <p v-if="errorsState.length">    
                 <ul class="ul-error">
-                  <li v-for="error in errorsEmail" >{{ error }}</li>
+                  <li v-for="error in errorsState" >{{ error }}</li>
                 </ul></p>
                   </div>
                   <div class="col-50">
                     <label for="zip">Zip</label>
                     <input
+                    :disabled='confirm'
                        v-model="zip"
                     @focus="deleteErrors('zip')"
                       type="text"
@@ -91,9 +95,9 @@
                       name="zip"
                       placeholder="10001"
                     />
-                      <p v-if="errorsEmail.length">    
+                      <p v-if="errorsZip.length">    
                 <ul class="ul-error">
-                  <li v-for="error in errorsEmail" >{{ error }}</li>
+                  <li v-for="error in errorsZip" >{{ error }}</li>
                 </ul></p>
                   </div>
                 </div>
@@ -116,6 +120,7 @@
                 </div>
                 <label for="cname">Name on Card</label>
                 <input
+                :disabled='confirm'
                   type="text"
                   id="cname"
                   name="cardname"
@@ -123,12 +128,13 @@
                    v-model="name_on_card"
                 @focus="deleteErrors('nameOnCard')"
                 />
-                 <p v-if="errorsEmail.length">    
+                 <p v-if="errorsNameOnCard.length">    
                 <ul class="ul-error">
-                  <li v-for="error in errorsEmail" >{{ error }}</li>
+                  <li v-for="error in errorsNameOnCard" >{{ error }}</li>
                 </ul></p>
                 <label for="ccnum">Credit card number</label>
                 <input
+                :disabled='confirm'
                   type="text"
                   id="ccnum"
                   name="cardnumber"
@@ -142,6 +148,7 @@
                 </ul></p>
                 <label for="expmonth">Exp Month</label>
                 <input
+                :disabled='confirm'
                   type="text"
                   id="expmonth"
                   name="expmonth"
@@ -157,6 +164,7 @@
                   <div class="col-50">
                     <label for="expyear">Exp Year</label>
                     <input
+                    :disabled='confirm'
                       type="text"
                       id="expyear"
                       name="expyear"
@@ -171,7 +179,7 @@
                   </div>
                   <div class="col-50">
                     <label for="cvv">CVV</label>
-                    <input  v-model="cvv"
+                    <input  v-model="cvv" :disabled='confirm'
                     @focus="deleteErrors('cvv')" type="text" id="cvv" name="cvv" placeholder="352" />
                      <p v-if="errorsCVV.length">    
                 <ul class="ul-error">
@@ -183,7 +191,11 @@
             </div>
            
             <input type="submit" value="Continue to checkout"  class="btn" v-if="confirm == false"/>
-               <input type="submit" value="Confirm order" @click="confirmOrder()" class="btn" v-else/>
+            <div class="container_button" v-else>
+              <input type="submit" value="Confirm order" @click="confirmOrder()" class="btn" />
+               <button class="cancel_button"  @click="cancel()"  >cancel</button>
+            </div>
+               
           </form>
         </div>
       </div>
@@ -192,12 +204,12 @@
           <h4>
             Cart
             <span class="price" style="color: black"
-              ><i class="fa fa-shopping-cart"></i> <b>4</b></span
+              ><i class="fa fa-shopping-cart"></i> </span
             >
           </h4>
            <p v-for="item in cart">
           <a href="#">{{ item.title }}</a
-          ><span>{{ item.quantity }}</span>
+          ><span class="quantity">{{ item.quantity }}</span>
           <span class="price">${{ item.price }}</span>
         </p>
           <hr />
@@ -229,7 +241,7 @@ export default {
   data() {
     return {
       full_name: null,
-      email: sessionStorage.getItem('email'),
+      email: sessionStorage.getItem("email"),
       address: null,
       city: null,
       state: null,
@@ -271,22 +283,21 @@ export default {
   methods: {
     checkout(event) {
       event.preventDefault();
-     
-      // this.errorsFullName = Validate.userNameIsNotValid(this.full_name);
-      // this.errorsAdress = Validate.validateAddress(this.address);
-      // this.errorsCity = Validate.validateCity(this.city);
-      // this.errorsNameOnCard = Validate.nameOnCardIsNotValid(this.name_on_card);
-      // this.errorsCreditCartNumber = Validate.isMoroccanCreditCardNumberValid(
-      //   this.credit_card_number
-      // );
-      // this.errorsExpMonth = Validate.validateExpMonth(this.exp_month);
-      // this.errorsExpYear = Validate.validateExpYear(this.exp_year);
-      // this.errorsState = Validate.validateState(this.state);
-      // this.errorsZip = Validate.validateZipCode(this.zip);
-      // this.errorsCVV = Validate.validateCVV(this.cvv);
+
+      this.errorsFullName = Validate.userNameIsNotValid(this.full_name);
+      this.errorsAdress = Validate.validateAddress(this.address);
+      this.errorsCity = Validate.validateCity(this.city);
+      this.errorsNameOnCard = Validate.nameOnCardIsNotValid(this.name_on_card);
+      this.errorsCreditCartNumber = Validate.isMoroccanCreditCardNumberValid(
+        this.credit_card_number
+      );
+      this.errorsExpMonth = Validate.validateExpMonth(this.exp_month);
+      this.errorsExpYear = Validate.validateExpYear(this.exp_year);
+      this.errorsState = Validate.validateState(this.state);
+      this.errorsZip = Validate.validateZipCode(this.zip);
+      this.errorsCVV = Validate.validateCVV(this.cvv);
       if (
         this.errorsFullName.length === 0 &&
-        
         this.errorsAdress.length === 0 &&
         this.errorsCity.length === 0 &&
         this.errorsNameOnCard.length === 0 &&
@@ -339,9 +350,15 @@ export default {
       }
     },
     confirmOrder() {
-       this.$store.dispatch("cleanCartAfterConfirm", sessionStorage.getItem("user"));
-       VueRouter.push({name:'OrderConfirmed'});     
-    }
+      this.$store.dispatch(
+        "cleanCartAfterConfirm",
+        sessionStorage.getItem("user")
+      );
+      VueRouter.push({ name: "OrderConfirmed" });
+    },
+    cancel() {
+      this.confirm = false;
+    },
   },
 };
 </script>
@@ -358,6 +375,19 @@ body {
 * {
   box-sizing: border-box;
 }
+.container_button {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+}
+.cancel_button {
+  width: 70px;
+  height: 44px;
+  margin: 10px 0;
+  background-color: white;
+  border: solid 1px #ccc;
+  cursor: pointer;
+}
 .row-f {
   display: -ms-flexbox; /* IE10 */
   display: flex;
@@ -369,6 +399,8 @@ body {
   width: calc(100% - 3rem);
   margin-left: auto;
   margin-right: auto;
+  flex-direction: column;
+  gap: 20px;
 }
 .row {
   display: -ms-flexbox; /* IE10 */
@@ -459,7 +491,10 @@ span.price {
 .total {
   color: #da2535;
 }
-
+.quantity {
+  margin-left: 20px;
+  color: #da2535;
+}
 @media (max-width: 1020px) {
   .row-f {
     flex-direction: column-reverse;

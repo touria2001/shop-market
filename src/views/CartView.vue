@@ -28,32 +28,22 @@
                    <button-shop-now text="continue shopping" />
                 </router-link >
               </div>
-              <div class="check__shipping">
-                <input type="checkbox" />
-                <span>Shipping(+7$)</span>
-              </div>
+              
             </div>
 
             <div class="cart__totals">
               <h3>Cart Totals</h3>
               <ul>
                 <li>
-                  Subtotal
+                  Total
                   <span class="new__price">$   {{
                 cart.reduce(
                   (acc, item) => acc + item.price * item.quantity,
                   0
                 ) 
-              }}</span>
-                </li>
-                <li>
-                  Shipping
-                  <span>$0</span>
-                </li>
-                <li>
-                  Total
-                  <span class="new__price">$250.99</span>
-                </li>
+              }}</span></li>
+               
+                
               </ul>
                <div @click="goToCheckOut()">
                    <button-shop-now text="go to checkout" />

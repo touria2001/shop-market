@@ -32,18 +32,7 @@
             We are so happy to share with us your review, we appreciate your
             time.
           </p>
-          <form action="">
-            <div class="send__direction">
-              <textarea
-                type="text"
-                placeholder="write your review here"
-                class="send__input"
-              ></textarea>
-              <a href="#" class="button send__btn" data-tilt
-                ><i class="bx bx-send"></i
-              ></a>
-            </div>
-          </form>
+          <add-review :id="Number(id)" />
         </div>
       </div>
     </section>
@@ -55,7 +44,11 @@
       </div>
       <!--testimonials-box-container------>
       <div class="testimonial-box-container">
-        <Review />
+        <div v-if="product.reviews != null">
+           <Review v-for="review in product.reviews" :review="review" />
+        </div>
+        <div v-else>no reviews yet</div>
+       
       </div>
     </section>
   </main>
@@ -68,8 +61,9 @@ import Quantity from "@/components/Quantity.vue";
 import ProductService from "@/services/ProductService";
 import Cookie from "@/cookies/Cookie";
 import VueRouter from "@/router/index";
+import AddReview from '@/components/AddReview.vue';
 export default {
-  components: { ButtonShopNow, Review, Quantity },
+  components: { ButtonShopNow, Review, Quantity, AddReview },
   props: ["id"],
   data() {
     return {
@@ -82,6 +76,7 @@ export default {
       .catch((error) => {
         console.log(error.response);
       });
+      
   },
   methods: {
     addToCart(product) {     

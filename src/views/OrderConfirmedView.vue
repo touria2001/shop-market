@@ -3,7 +3,7 @@
     <div class="home__container bd-container bd-grid">
       <div class="home__img">
         <img
-          src="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81f9xvXj5XL._AC_SX466_.jpg"
+          :src="imageHome"
         />
       </div>
 
@@ -28,6 +28,11 @@ export default {
   components: {
     ButtonShopNow,
   },
+   data() {
+    return {
+      imageHome: require('@/assets/images/images-foreo_prev_ui.png')
+    }
+  }
 };
 </script>
 

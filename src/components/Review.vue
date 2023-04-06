@@ -10,8 +10,8 @@
               </div>
               <!--name-and-username-->
               <div class="name-user">
-                <strong>Oliva</strong>
-                <span>@Olivaadward</span>
+                <strong> {{review.name}}</strong>
+                
               </div>
             </div>
             <!--reviews------>
@@ -26,10 +26,7 @@
           <!--Comments---------------------------------------->
           <div class="client-comment">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem, quaerat quis? Provident temporibus architecto
-              asperiores nobis maiores nisi a. Quae doloribus ipsum aliquam
-              tenetur voluptates incidunt blanditiis sed atque cumque.
+             {{review.review}}
             </p>
           </div>
         </div>
@@ -37,6 +34,12 @@
 
 <script>
 export default {
+   props: {
+    review: {
+      type: Object,
+      required: true,
+    },
+  },
 
 }
 </script>

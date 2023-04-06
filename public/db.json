@@ -14,7 +14,19 @@
       "image": "https://www.zinabel.ma/3315-large_default/fond-de-teint-liquid-coverage-hd-catrice.jpg",
       "price": 265,
       "category": "Special Products",
-      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
+      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look.",
+      "reviews": [
+        {
+          "name": "sfdsf",
+          "rating": 5,
+          "review": "dsfsdfds"
+        },
+        {
+          "name": "dfdsfdsf",
+          "rating": 5,
+          "review": "dfdsf"
+        }
+      ]
     },
     {
       "id": 4,
@@ -201,91 +213,6 @@
       "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look."
     }
   ],
-  "cart": [
-    {
-      "id": 8,
-      "title": "Apple iPhone 11",
-      "image": "./images/products/iphone/iphone4.jpeg",
-      "price": 290,
-      "category": "Featured Products",
-      "quantity": 14
-    },
-    {
-      "id": 6,
-      "title": "Apple iPhone 11",
-      "image": "./images/products/iphone/iphone3.jpeg",
-      "price": 760,
-      "category": "Featured Products",
-      "quantity": 3
-    },
-    {
-      "id": 3,
-      "title": "Sony WH-CH510",
-      "image": "https://www.zinabel.ma/3315-large_default/fond-de-teint-liquid-coverage-hd-catrice.jpg",
-      "price": 265,
-      "category": "Special Products",
-      "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look.",
-      "quantity": 3
-    },
-    {
-      "id": 14,
-      "title": "Sony WH-CH510",
-      "image": "./images/products/headphone/headphone7.jpeg",
-      "price": 360,
-      "category": "Trending Products",
-      "quantity": 1
-    }
-  ],
-  "reviews": [
-    {
-      "id": 1,
-      "product_id": 3,
-      "name": "John Smith",
-      "job": "Founder at Apple",
-      "image": "./images/profile1.jpg",
-      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
-    },
-    {
-      "id": 2,
-      "product_id": 3,
-      "name": "John Smith",
-      "job": "Founder at Apple",
-      "image": "./images/profile1.jpg",
-      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
-    },
-    {
-      "id": 3,
-      "product_id": 3,
-      "name": "John Smith",
-      "job": "Founder at Apple",
-      "image": "./images/profile1.jpg",
-      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
-    },
-    {
-      "id": 4,
-      "product_id": 3,
-      "name": "John Smith",
-      "job": "Founder at Apple",
-      "image": "./images/profile1.jpg",
-      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
-    },
-    {
-      "id": 4,
-      "product_id": 3,
-      "name": "John Smith",
-      "job": "Founder at Apple",
-      "image": "./images/profile1.jpg",
-      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
-    },
-    {
-      "id": 5,
-      "product_id": 3,
-      "name": "John Smith",
-      "job": "Founder at Apple",
-      "image": "./images/profile1.jpg",
-      "review_text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore quibusdam consequatur eligendi unde officia ex quae."
-    }
-  ],
   "users": [
     {
       "id": 1,
@@ -310,20 +237,50 @@
       "email": "abboutouria20010203@gmail.com",
       "cart": [
         {
+          "id": 6,
+          "title": "Apple iPhone 11",
+          "image": "https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/12/646235/1.jpg?8352",
+          "price": 760,
+          "category": "Featured Products",
+          "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look.",
+          "quantity": 1
+        },
+        {
           "id": 3,
           "title": "Sony WH-CH510",
           "image": "https://www.zinabel.ma/3315-large_default/fond-de-teint-liquid-coverage-hd-catrice.jpg",
           "price": 265,
           "category": "Special Products",
           "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look.",
-          "quantity": 3
+          "reviews": [
+            {
+              "name": "sfdsf",
+              "rating": 5,
+              "review": "dsfsdfds"
+            },
+            {
+              "name": "dfdsfdsf",
+              "rating": 5,
+              "review": "dfdsf"
+            }
+          ],
+          "quantity": 1
         },
         {
-          "id": 6,
+          "id": 10,
+          "title": "Apple iPhone 11 Pro",
+          "image": "https://sdcdn.io/mac/fr/mac_sku_M2206R_1x1_0.png?width=1440&height=1440",
+          "price": 385,
+          "category": "Special Products",
+          "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look.",
+          "quantity": 1
+        },
+        {
+          "id": 4,
           "title": "Apple iPhone 11",
-          "image": "https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/12/646235/1.jpg?8352",
-          "price": 760,
-          "category": "Featured Products",
+          "image": "https://www.maybelline.fr/~/media/mny/fr/face-makeup/foundation/fond-de-teint-liquide-fit-me-matte-poreless/new%20packshots/a2xibvlpn4dgp9guuqtvr01htuc49k50.jpg?thn=0&w=380&hash=F4F70BD2FCB6A288C3CD4DAB3B3A905DF0E81E80",
+          "price": 850,
+          "category": "Special Products",
           "description": "Get your two favorite mascaras in one click to save while reducing packaging and minimizing the effects of multiple shipments on the environment! Lash Princess False Lash Mascara defines and separates lashes while achieving a bold look.",
           "quantity": 1
         }

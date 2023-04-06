@@ -19,4 +19,7 @@ export default {
   postProduct(product) {
     return apiClient.post('/products', product)
   },
+  addReviewAboutProduct(id, reviews) {
+    return apiClient.patch('/products/' + id, { reviews: reviews })
+  },
 }
