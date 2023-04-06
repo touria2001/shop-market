@@ -6,6 +6,7 @@ import ProductsView from '../views/ProductsView.vue'
 import CartView from '../views/CartView.vue'
 import SignInView from '../views/SignInView.vue'
 import CheckOutView from '../views/CheckOutView.vue'
+import  OrderConfirmedView from '../views/OrderConfirmedView.vue'
 
 Vue.use(VueRouter)
 
@@ -22,9 +23,10 @@ const routes = [
     props: true
   },
   {
-    path: '/products',
+    path: '/products/:categoryName?',
     name: 'products',
-    component: ProductsView
+    component: ProductsView,
+    props: true
   },
   {
     path: '/cart',
@@ -41,6 +43,11 @@ const routes = [
     name: 'checkout',
     component: CheckOutView
   },
+  {
+    path: '/confirmed-order',
+    name:'OrderConfirmed',
+    component: OrderConfirmedView
+  }
   
 ]
 

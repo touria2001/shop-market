@@ -63,8 +63,10 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
+    },
+    CLEAN_CART(state) {
+      state.cart = [];
     }
-
   },
   actions: {
     fetchProducts({ commit }) {
@@ -129,27 +131,20 @@ export default new Vuex.Store({
 
     },
 
-  
+
     deleteProduct({ commit }, { product, id }) {
 
       let cart = this.state.cart.filter(p => p.id !== product.id);
 
-      try {
+      UserService.deleteProductFromCart(id, cart)
 
-        UserService.deleteProductFromCart(id, cart)
+        .then((response) => {
 
-          .then((response) => {
+          commit('REMOVE_FROM_CART', product.id);
 
-            commit('REMOVE_FROM_CART', product.id);
-
-          })
-
-      } catch (error) {
-
-        console.log('--erreur---' + error);
-
-      }
-
+        }).catch((error) => {
+          console.error(error.message)
+        })
     },
     signUp({ commit }, user) {
       let successSignUp = true;
@@ -210,7 +205,16 @@ export default new Vuex.Store({
       }).catch((error) => {
         console.error(error.message)
       })
-    }
+    },
+    cleanCartAfterConfirm({ commit },  idUser ) {
+      let cart = [];
+      UserService.deleteProductFromCart(idUser, cart)
+        .then((response) => {
+          commit('CLEAN_CART');
+        }).catch((error) => {
+          console.error(error.message)
+        })
+    },
 
 
 

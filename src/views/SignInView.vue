@@ -211,6 +211,7 @@ export default {
           ) {
             logged = true;
             sessionStorage.setItem("user", user.id);
+            sessionStorage.setItem("email", user.email);
             if (this.checked === true) {
               document.cookie =
                 "idMakeup=" +

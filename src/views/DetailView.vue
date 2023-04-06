@@ -14,9 +14,9 @@
           <p class="share__description">
             {{ product.description }}
           </p>
-          <!-- <span class="share__description">quantity: </span>
-           <quantity :product="product" /> -->
-          <button @click="addToCart(product)">shop now</button>
+          
+         
+          <button-shop-now text="shop now" @event-click="addToCart(product)"/>
         </div>
 
         <div class="share__img">

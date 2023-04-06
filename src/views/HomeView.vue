@@ -5,7 +5,7 @@
       <div class="home__container bd-container bd-grid">
         <div class="home__img">
           <img
-           src="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81f9xvXj5XL._AC_SX466_.jpg"
+           :src="imageHome"
           />
         </div>
 
@@ -15,7 +15,9 @@
             En cette fin d'année, exaucez son voeu le plus cher avec cet élégant
             coffret BOSS Bottled. Un ...
           </p>
-          <button-shop-now />
+          <router-link :to="{name: 'products'}">
+          <button-shop-now text="go shopping" />
+          </router-link>
         </div>
       </div>
     </section>
@@ -24,7 +26,13 @@
       <h2 class="section-title">OUR FAVORITE MAKEUP PRODUCTS</h2>
 
       <div class="accessory__container bd-grid">
-        <Product  v-for="product in featuredProducts" :key="product.id" :product="product" />
+         <router-link
+          :to="{ name: 'detail', params: { id: product.id } }"
+          v-for="product in featuredProducts"
+          :key="product.id"
+        >
+        <Product   :product="product" />
+        </router-link>
       </div>
     </section>
     <!--========== CATEGORIES ==========-->
@@ -60,5 +68,10 @@ export default {
     this.$store.dispatch("fetchCategories");
   },
   computed: mapState(["featuredProducts","categories"]),
+  data() {
+    return {
+      imageHome: require('@/assets/images/images-foreo_prev_ui.png')
+    }
+  }
 };
 </script>

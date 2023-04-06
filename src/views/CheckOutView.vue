@@ -29,6 +29,8 @@
                   name="email"
                   placeholder="john@example.com"
                   @focus="deleteErrors('email')"
+                  v-model ="email"
+                  disabled
                 
                 />
                   <p v-if="errorsEmail.length">    
@@ -181,7 +183,7 @@
             </div>
            
             <input type="submit" value="Continue to checkout"  class="btn" v-if="confirm == false"/>
-               <input type="submit" value="Confirm order" disabled  class="btn" v-else/>
+               <input type="submit" value="Confirm order" @click="confirmOrder()" class="btn" v-else/>
           </form>
         </div>
       </div>
@@ -227,7 +229,7 @@ export default {
   data() {
     return {
       full_name: null,
-      email: null,
+      email: sessionStorage.getItem('email'),
       address: null,
       city: null,
       state: null,
@@ -259,16 +261,17 @@ export default {
       VueRouter.push({ name: "home" });
     }
   },
+
   updated() {
     if (this.cart == null) {
       VueRouter.push({ name: "home" });
     }
   },
-  computed: mapState(["cart"]),
+  computed: mapState(["cart", "user"]),
   methods: {
     checkout(event) {
       event.preventDefault();
-      // this.errorsEmail = Validate.emailIsNotValid(this.email, this.users);
+     
       // this.errorsFullName = Validate.userNameIsNotValid(this.full_name);
       // this.errorsAdress = Validate.validateAddress(this.address);
       // this.errorsCity = Validate.validateCity(this.city);
@@ -283,7 +286,7 @@ export default {
       // this.errorsCVV = Validate.validateCVV(this.cvv);
       if (
         this.errorsFullName.length === 0 &&
-        this.errorsEmail.length === 0 &&
+        
         this.errorsAdress.length === 0 &&
         this.errorsCity.length === 0 &&
         this.errorsNameOnCard.length === 0 &&
@@ -335,6 +338,10 @@ export default {
         this.errorsZip = [];
       }
     },
+    confirmOrder() {
+       this.$store.dispatch("cleanCartAfterConfirm", sessionStorage.getItem("user"));
+       VueRouter.push({name:'OrderConfirmed'});     
+    }
   },
 };
 </script>

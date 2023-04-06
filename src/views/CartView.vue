@@ -22,8 +22,11 @@
             </div>
 
             <div class="cart-btns">
-              <div class="continue__shopping">
-                <button@click="goToCheckOut()" >shop now</button>
+              <div >
+                
+                <router-link to="/products" >
+                   <button-shop-now text="continue shopping" />
+                </router-link >
               </div>
               <div class="check__shipping">
                 <input type="checkbox" />
@@ -52,7 +55,10 @@
                   <span class="new__price">$250.99</span>
                 </li>
               </ul>
-              <button-shop-now />
+               <div @click="goToCheckOut()">
+                   <button-shop-now text="go to checkout" />
+                   </div>
+              
             </div>
           </form>
         </div>

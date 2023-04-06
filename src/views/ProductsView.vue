@@ -1,32 +1,86 @@
 <template>
   <main class="l-main">
-     <section class=" section bd-container filter">
-    <select-element />
-    <select-element />
-    <select-element />
+    <section class="section bd-container filter">
+      <select-element :categories="categories" @category="setCategory"  />
+      <select-element :prices="prices" @price="setPrice" />
+      <select-element :rating="ratingSelect" @rating="setRating" />
     </section>
     <section class="accessory bd-container section product" id="accessory">
       <div class="accessory__container bd-grid">
-        <router-link :to="{ name: 'detail', params: { id: product.id } }"  v-for="product in products" :key="product.id">
-        <product  :product="product" />
+        <router-link
+          :to="{ name: 'detail', params: { id: product.id } }"
+          v-for="product in products"
+          :key="product.id"
+        >
+          <product :product="product" />
         </router-link>
-       
       </div>
     </section>
-   
   </main>
 </template>
 
 <script>
 import Product from "@/components/Product.vue";
 import SelectElement from "@/components/SelectElement.vue";
-import { mapState } from "vuex";
+
 export default {
   components: { Product, SelectElement },
   created() {
     this.$store.dispatch("fetchProducts");
+    this.$store.dispatch("fetchCategories");
   },
-  computed: mapState(["products"]),
+
+  computed: {
+    
+    categories() {
+      return this.$store.state.categories;
+    },
+    products() {
+      return this.$store.state.products
+        .filter(
+          (product) =>
+            (this.category != null && this.category == product.category) ||
+            this.category == null
+        )
+        .filter(
+          (product) =>
+            (this.price != null && product.price <= this.price) ||
+            this.price == null
+        )
+        .filter(
+          (product) =>
+            (this.rating != null &&
+              product.rating != null &&
+              this.rating == product.rating) ||
+            this.rating == null
+        );
+    },
+  },
+  data() {
+    return {
+      category: null,
+      price: null,
+      rating: null,
+      prices: [
+        { value: 100, text: "< 100$" },
+        { value: 300, text: "< 300$" },
+        { value: 500, text: "< 500$" },
+        { value: 1000, text: "< 1000$" },
+      ],
+      ratingSelect: [1, 2, 3, 4, 5],
+    };
+  },
+  methods: {
+    setCategory(value) {
+      this.category = value;
+    },
+    setPrice(value) {
+      this.price = value;
+    },
+    setRating(value) {
+      this.rating = value;
+    },
+  },
 };
 </script>
 
