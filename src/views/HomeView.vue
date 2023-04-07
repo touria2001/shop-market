@@ -1,6 +1,7 @@
 <template>
+
   <main class="l-main">
-    <!--======HOME=====-->
+ 
     <section class="home" id="home">
       <div class="home__container bd-container bd-grid">
         <div class="home__img">
@@ -21,11 +22,11 @@
         </div>
       </div>
     </section>
-    <!--======FEATRUED PRODUCTS=====-->
+   
     <section class="accessory bd-container section" id="accessory">
       <h2 class="section-title">OUR FAVORITE MAKEUP PRODUCTS</h2>
 
-      <div class="accessory__container bd-grid">
+      <div class="accessory__container bd-grid" v-if="featuredProducts != null">
          <router-link
           :to="{ name: 'detail', params: { id: product.id } }"
           v-for="product in featuredProducts"
@@ -34,10 +35,11 @@
         <Product   :product="product" />
         </router-link>
       </div>
+      <loader v-else />
     </section>
-    <!--========== CATEGORIES ==========-->
+
     <section class="decoration section bd-container" id="decoration">
-      <div class="decoration__container bd-grid">
+      <div class="decoration__container bd-grid" v-if="categories != null">
         <div class="decoration__data">
           <h2 class="section-title">CATEGORIES</h2>
           <div class="decoration__container bd-grid">
@@ -45,6 +47,7 @@
           </div>
         </div>
       </div>
+      <loader v-else />
     </section>
   </main>
 </template>
@@ -54,6 +57,7 @@ import Category from "@/components/Category.vue";
 import Product from "@/components/Product.vue";
 import ButtonShopNow from "@/components/ButtonShopNow.vue";
 import { mapState } from "vuex";
+import Loader from "@/components/Loader.vue";
 // @ is an alias to /src
 
 export default {
@@ -62,6 +66,7 @@ export default {
     Category,
     Product,
     ButtonShopNow,
+    Loader
   },
   created() {
     this.$store.dispatch("fetchFeatruedProducts");

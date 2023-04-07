@@ -1,5 +1,5 @@
 <template>
-  <main class="l-main">
+  <main class="l-main" >
     <section class="bd-container section cart-container" id="share">
       <div class="container">
         <div class="responsive__cart-area">

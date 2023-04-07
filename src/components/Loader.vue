@@ -1,23 +1,20 @@
 <template>
-  <div class="content">
-  <div class="bars">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
+<div class="container__loader">
+<div class="scene">
+  <div class="cube-wrapper">
+    <div class="cube">
+      <div class="cube-faces">
+        <div class="cube-face shadow"></div>
+        <div class="cube-face bottom"></div>
+        <div class="cube-face top"></div>
+        <div class="cube-face left"></div>
+        <div class="cube-face right"></div>
+        <div class="cube-face back"></div>
+        <div class="cube-face front"></div>
+      </div>
+    </div>
   </div>
-  <div class="bars">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
+</div>
 </div>
 </template>
 
@@ -28,117 +25,128 @@ export default {
 </script>
 
 <style scoped>
-:root {
-	--b: #262626;
-	--w: #dcdcd2;
-	--s: 2s; /* change speed */
-}	
-
-*, *:before, *:after {
-	box-sizing: border-box;
-	transform-style: preserve-3d;
+* {
+  font-family: "Albert Sans", sans-serif;
+  font-size: inherit;
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	width: 100vw;
-	height: 100vh;
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: var(--b);
+  background-color: #ff8484ff;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.container__loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 176px;
+    height: calc(100vh - 558px);
+}
+.scene {
+  position: relative;
+  z-index: 2;
+  height: 220px;
+  width: 220px;
+  display: grid;
+  place-items: center;
 }
 
-.content {
-	width: 50vmin;
-	height: 50vmin;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	perspective: 1000vmin;
+.cube-wrapper {
+  transform-style: preserve-3d;
+  animation: bouncing 2s infinite;
 }
 
-.bars {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	padding: 6.5vmin 3vmin;
-	animation: mirror1 calc(var(--s) * 2) ease 0s infinite ;
+.cube {
+  transform-style: preserve-3d;
+  transform: rotateX(45deg) rotateZ(45deg);
+  animation: rotation 2s infinite;
 }
 
-.bars + .bars {
-	transform: rotate(90deg) rotateX(180deg);
-	animation: mirror2 calc(var(--s) * 2) ease calc(var(--s) / 2) infinite;
+.cube-faces {
+  transform-style: preserve-3d;
+  height: 80px;
+  width: 80px;
+  position: relative;
+  transform-origin: 0 0;
+  transform: translateX(0) translateY(0) translateZ(-40px);
 }
 
-.bar {
-	width: 44vmin;
-	height: 3vmin;
-	margin: 2vmin 0vmin;
-	background: linear-gradient(90deg, #fff0 33%, var(--w) 33% 67%, #fff0 67% 100%);
-	animation: grow var(--s) ease-in-out 0s infinite alternate; 
-	background-size: 300%;
-	background-position-x: -203%;
+.cube-face {
+  position: absolute;
+  inset: 0;
+  background: #110d31ff;
+  border: solid 1px #ff8484ff;
+}
+.cube-face.shadow {
+  transform: translateZ(-80px);
+  animation: bouncing-shadow 2s infinite;
+}
+.cube-face.top {
+  transform: translateZ(80px);
+}
+.cube-face.front {
+  transform-origin: 0 50%;
+  transform: rotateY(-90deg);
+}
+.cube-face.back {
+  transform-origin: 0 50%;
+  transform: rotateY(-90deg) translateZ(-80px);
+}
+.cube-face.right {
+  transform-origin: 50% 0;
+  transform: rotateX(-90deg) translateY(-80px);
+}
+.cube-face.left {
+  transform-origin: 50% 0;
+  transform: rotateX(-90deg) translateY(-80px) translateZ(80px);
 }
 
-@keyframes mirror1 {
-	0%, 47%, 99.99%, 100% { transform: rotate(180deg) rotateX(0deg); }
-	47.01%, 99.98% { transform: rotate(180deg) rotateX(180deg); }
+@keyframes rotation {
+  0% {
+    transform: rotateX(45deg) rotateY(0) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(0.17, 0.84, 0.44, 1);
+  }
+  50% {
+    transform: rotateX(45deg) rotateY(0) rotateZ(225deg);
+    animation-timing-function: cubic-bezier(0.76, 0.05, 0.86, 0.06);
+  }
+  100% {
+    transform: rotateX(45deg) rotateY(0) rotateZ(405deg);
+    animation-timing-function: cubic-bezier(0.17, 0.84, 0.44, 1);
+  }
+}
+@keyframes bouncing {
+  0% {
+    transform: translateY(-40px);
+    animation-timing-function: cubic-bezier(0.76, 0.05, 0.86, 0.06);
+  }
+  45% {
+    transform: translateY(40px);
+    animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  100% {
+    transform: translateY(-40px);
+    animation-timing-function: cubic-bezier(0.76, 0.05, 0.86, 0.06);
+  }
+}
+@keyframes bouncing-shadow {
+  0% {
+    transform: translateZ(-80px) scale(1.3);
+    animation-timing-function: cubic-bezier(0.76, 0.05, 0.86, 0.06);
+    opacity: 0.05;
+  }
+  45% {
+    transform: translateZ(0);
+    animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateZ(-80px) scale(1.3);
+    animation-timing-function: cubic-bezier(0.76, 0.05, 0.86, 0.06);
+    opacity: 0.05;
+  }
 }
 
-@keyframes mirror2 {
-	0%, 47%, 99.99%, 100% { transform: rotate(90deg) rotateX(180deg); }
-	47.01%, 99.98% { transform: rotate(90deg) rotateX(0deg); }
-}
-
-@keyframes grow {
-	0%, 25% { background-position-x: -297%; }
-	45%, 55% { background-position-x: -250%; }
-	75%, 100% { background-position-x: -203%; }
-}
-
-.bar:nth-child(2) {
-	animation-delay: calc(var(--s) * -0.02);
-}
-.bar:nth-child(3) {
-	animation-delay: calc(var(--s) * -0.04);
-}
-.bar:nth-child(4) {
-	animation-delay: calc(var(--s) * -0.06);
-}
-.bar:nth-child(5) {
-	animation-delay: calc(var(--s) * -0.08);
-}
-.bar:nth-child(6) {
-	animation-delay: calc(var(--s) * -0.1);
-}
-.bar:nth-child(7) {
-	animation-delay: calc(var(--s) * -0.12);
-}
-
-.bars:nth-child(2) .bar:nth-child(1) {
-	animation-delay: calc(calc(var(--s) * -0.001) - calc(var(--s) / 2));
-}
-.bars:nth-child(2) .bar:nth-child(2) {
-	animation-delay: calc(calc(var(--s) * -0.02) - calc(var(--s) / 2));
-}
-.bars:nth-child(2) .bar:nth-child(3) {
-	animation-delay: calc(calc(var(--s) * -0.04) - calc(var(--s) / 2));
-}
-.bars:nth-child(2) .bar:nth-child(4) {
-	animation-delay: calc(calc(var(--s) * -0.06) - calc(var(--s) / 2));
-}
-.bars:nth-child(2) .bar:nth-child(5) {
-	animation-delay: calc(calc(var(--s) * -0.08) - calc(var(--s) / 2));
-}
-.bars:nth-child(2) .bar:nth-child(6) {
-	animation-delay: calc(calc(var(--s) * -0.1) - calc(var(--s) / 2));
-}
-.bars:nth-child(2) .bar:nth-child(7) {
-	animation-delay: calc(calc(var(--s) * -0.12) - calc(var(--s) / 2));
-}
 </style>

@@ -1,5 +1,6 @@
 <template>
-  <main class="l-main">
+ <loader v-if="products == null" />
+  <main class="l-main" v-else>
     <section class="section bd-container filter">
       <select-element :categories="categories" @category="setCategory" />
       <select-element :prices="prices" @price="setPrice" />
@@ -17,6 +18,7 @@
       </div>
     </section>
   </main>
+ 
 </template>
 
 <script>
@@ -25,14 +27,13 @@ import SelectElement from "@/components/SelectElement.vue";
 
 export default {
   components: { Product, SelectElement },
-  props: ['categoryName'],
+  props: ["categoryName"],
   created() {
     this.$store.dispatch("fetchProducts");
     this.$store.dispatch("fetchCategories");
   },
 
   computed: {
-    
     categories() {
       return this.$store.state.categories;
     },
@@ -48,13 +49,21 @@ export default {
             (this.price != null && product.price <= this.price) ||
             this.price == null
         )
-        .filter(
-          (product) =>
-            (this.rating != null &&
-              product.rating != null &&
-              this.rating == product.rating) ||
-            this.rating == null
-        );
+        .filter((product) => {
+          if (this.rating != null && this.rating != 0 && product.reviews != null && product.reviews.length != 0 ) {
+            let rate = Math.round(
+              product.reviews.reduce((acc, review) => {
+                if (review.rating != null) acc += review.rating;
+                return acc;
+              }, 0) / product.reviews.length
+            );
+            if (this.rating <= rate) {
+              return product;
+            }
+          } else if ((this.rating != null && product.reviews == null) ||(this.rating != null && product.reviews != null && product.reviews.length == 0) || this.rating == null) {
+            return product;
+          } 
+        });
     },
   },
   data() {

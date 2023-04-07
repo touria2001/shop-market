@@ -9,12 +9,7 @@
                 <div class="form-group">
         
         <div class="stars">
-        <!-- <div class="rating" v-for="i in ratingArr" :key="i" >
-          <input  type="radio" name="rating" :id="i" :value="i" v-model="picked" :class="  isActive == i ? 'active__star':''" @click="isActive = i" /><label :for="i"
-            class="star"
-            >&#9733;</label
-          >
-        </div> -->
+   
         <div class="margin__rating" >
             <AwesomeVueStarRating :star="this.star" :disabled="this.disabled" :maxstars="this.maxstars" :starsize="this.starsize" :hasresults="this.hasresults" :hasdescription="this.hasdescription" :ratingdescription="this.ratingdescription" />
 </div>
@@ -61,7 +56,7 @@ export default {
       errorsName: [],
       errorsReview: [],
       ratingArr: [1, 2, 3, 4, 5],
-      isActive: null,
+    
       star: 5, // default star
       ratingdescription: [
         {

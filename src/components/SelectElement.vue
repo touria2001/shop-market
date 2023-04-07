@@ -2,10 +2,9 @@
 
   <div class="box" v-if="categories != null">
    
-    <select class="mydropdown" v-model="categoryValue" @change="emitCategory()">   
-    
+    <select class="mydropdown" v-model="categoryValue" @change="emitCategory()">    
       
-      </option>  
+      <option :value="null" >categories</option>
       <option v-for="option in categories" :value="option">
         {{ option }}
       </option>
@@ -14,6 +13,7 @@
    
   <div class="box" v-else-if="prices != null">
     <select class="mydropdown" v-model="priceValue" @change="emitPrice()">
+      <option :value="null" >prices</option>
       <option v-for="option in prices" :value="option.value">
         {{ option.text }}
       </option>
@@ -21,6 +21,8 @@
   </div>
   <div class="box" v-else-if="rating != null">
     <select class="mydropdown" v-model="ratingValue" @change="emitRating()">
+      <option :value="null" >rating</option>
+      <option value="0">no rate yet</option>
       <option v-for="option in rating" :value="option">
         {{ option }}
       </option>
@@ -70,7 +72,7 @@ export default {
   padding: 12px;
   width: 250px;
   border: none;
-  font-size: 20px;
+  font-size: 17px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   -webkit-appearance: button;
   appearance: button;

@@ -142,7 +142,7 @@ export default {
       errorsSignIn: [],
       successfulSignUp: false,
       failedLogin: false,
-      email_sign_in: null,
+      email_sign_in: Cookie.getCookieValue("emailMakeup"),
       password_sign_in: null,
       checked: false,
     };

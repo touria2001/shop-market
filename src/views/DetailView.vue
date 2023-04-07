@@ -1,75 +1,80 @@
 <template>
-<loader />
-  <main class="l-main">
-    <section class="share bd-container section detail" id="share">
-      <div class="share__container bd-grid">
-        <div class="share__data">
-          <h2 class="section-title-center">{{ product.title }}</h2>
-          <AwesomeVueStarRating
-            v-if="product.reviews"
-            :star="
-              Math.round(
-                product.reviews.reduce((acc, review) => {
-                  acc += review.rating;
-                  return acc;
-                }, 0) / product.reviews.length
-              )
-            "
-            :disabled="this.disabled"
-            :maxstars="this.maxstars"
-            :starsize="this.starsize"
-            :hasresults="this.hasresults"
-            :hasdescription="this.hasdescription"
-            :ratingdescription="this.ratingdescription"
-          />
+  <div>
+    <loader v-if="product == null" />
+    <main class="l-main" v-else>
+      <section class="share bd-container section detail" id="share">
+        <div class="share__container bd-grid">
+          <div class="share__data">
+            <h2 class="section-title-center">{{ product.title }}</h2>
+            <AwesomeVueStarRating
+              v-if="product.reviews"
+              :star="
+                Math.round(
+                  product.reviews.reduce((acc, review) => {
+                    acc += review.rating;
+                    return acc;
+                  }, 0) / product.reviews.length
+                )
+              "
+              :disabled="this.disabled"
+              :maxstars="this.maxstars"
+              :starsize="this.starsize"
+              :hasresults="this.hasresults"
+              :hasdescription="this.hasdescription"
+              :ratingdescription="this.ratingdescription"
+            />
 
-          <div class="reviews" v-else>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <span class="description__rating">(no rating yet)</span>
+            <div class="reviews" v-else>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <span class="description__rating">(no rating yet)</span>
+            </div>
+
+            <p class="share__description">
+              {{ product.description }}
+            </p>
+            <button-shop-now
+              text="shop now"
+              @event-click="addToCart(product)"
+            />
           </div>
 
-          <p class="share__description">
-            {{ product.description }}
-          </p>
-          <button-shop-now text="shop now" @event-click="addToCart(product)" />
+          <div class="share__img">
+            <img v-bind:src="product.image" alt="" />
+          </div>
         </div>
-
-        <div class="share__img">
-          <img v-bind:src="product.image" alt="" />
+      </section>
+      <section class="send section">
+        <div class="send__container bd-container">
+          <div class="send__content">
+            <h2 class="section-title-center send__title">Add your review</h2>
+            <p class="send__description">
+              We are so happy to share with us your review, we appreciate your
+              time.
+            </p>
+            <add-review :id="Number(id)" />
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="send section">
-      <div class="send__container bd-container">
-        <div class="send__content">
-          <h2 class="section-title-center send__title">Add your review</h2>
-          <p class="send__description">
-            We are so happy to share with us your review, we appreciate your
-            time.
-          </p>
-          <add-review :id="Number(id)" />
+      </section>
+      <!--Testimonials------------------->
+      <section id="testimonials">
+        <!--heading--->
+        <div class="testimonial-heading">
+          <span>reviews</span>
         </div>
-      </div>
-    </section>
-    <!--Testimonials------------------->
-    <section id="testimonials">
-      <!--heading--->
-      <div class="testimonial-heading">
-        <span>reviews</span>
-      </div>
-      <!--testimonials-box-container------>
-      <div class="testimonial-box-container">
-        <div v-if="product.reviews != null" class="container-reviews">
-          <Review v-for="review in product.reviews" :review="review" />
+        <!--testimonials-box-container------>
+        <div class="testimonial-box-container">
+          <div v-if="product.reviews != null" class="container-reviews">
+            <Review v-for="review in product.reviews" :review="review" />
+          </div>
+          <div v-else>no reviews yet</div>
         </div>
-        <div v-else>no reviews yet</div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -80,7 +85,7 @@ import VueRouter from "@/router/index";
 import AddReview from "@/components/AddReview.vue";
 import { mapState } from "vuex";
 import AwesomeVueStarRating from "awesome-vue-star-rating";
-import Loader from '@/components/Loader.vue';
+import Loader from "@/components/Loader.vue";
 export default {
   components: {
     ButtonShopNow,
