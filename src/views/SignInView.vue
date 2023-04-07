@@ -191,7 +191,7 @@ export default {
     },
     onSignIn(e) {
       e.preventDefault();
-
+this.errorsSignIn = [];
       this.errorsEmailSignIn = Validate.fieldIsEmpty(
         this.email_sign_in,
         "Email"
