@@ -9,7 +9,7 @@
       >
         <ul class="nav-list">
           <li class="nav__item">
-            <router-link to="/">
+            <router-link to="/" exact-active-class="active__link">
               <a  
                 href=""
                 class="nav__link"
@@ -19,7 +19,7 @@
             >
           </li>
           <li class="nav__item">
-            <router-link to="/products"
+            <router-link to="/products" exact-active-class="active__link"
               ><a
                 href="#share"
                 class="nav__link"
@@ -30,7 +30,7 @@
             >
           </li>
           <li class="nav__item">
-            <router-link to="/#decoration"
+            <router-link to="/#decoration" exact-active-class="active__link"
               ><a  
                 href=""
                 class="nav__link"
@@ -40,7 +40,7 @@
             >
           </li>
           <li class="nav__item">
-            <router-link to="/sign-in"
+            <router-link to="/sign-in" exact-active-class="active__link"
               ><a  
                 href=""
                 class="nav__link"
@@ -49,7 +49,7 @@
               ></router-link
             >
           </li>
-          <router-link to="/cart"
+          <router-link to="/cart" exact-active-class="active__link"
             ><li>
               <i
                 class="bx bx-cart cart-icon change-theme"

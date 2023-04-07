@@ -191,6 +191,7 @@ export default {
     },
     onSignIn(e) {
       e.preventDefault();
+
       this.errorsEmailSignIn = Validate.fieldIsEmpty(
         this.email_sign_in,
         "Email"
@@ -205,12 +206,13 @@ export default {
         this.errorsPasswordSignIn.length === 0
       ) {
         this.users.forEach((user) => {
+         
           if (
             user.email === this.email_sign_in &&
             user.password === this.password_sign_in
           ) {
             logged = true;
-            sessionStorage.setItem("user", user.id);
+           
             sessionStorage.setItem("email", user.email);
             if (this.checked === true) {
               document.cookie =
@@ -226,7 +228,8 @@ export default {
                 user.email +
                 ";expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/";
             }
-            this.$store.dispatch("signIn", user.id);
+         
+            this.$store.dispatch("signIn", {email: user.email, password: user.password});
           }
         });
       }

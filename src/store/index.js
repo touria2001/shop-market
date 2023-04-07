@@ -17,11 +17,15 @@ export default new Vuex.Store({
     featuredProducts: [],
     cart: [],
     reviews: [],
+    product: null,
   },
- 
+
   mutations: {
     SET_PRODUCTS(state, products) {
       state.products = products
+    },
+    SET_PRODUCT(state, product) {
+      state.product = product
     },
     SET_FEATURED_PRODUCTS(state, products) {
       state.featuredProducts = products
@@ -69,7 +73,7 @@ export default new Vuex.Store({
     },
     CLEAN_CART(state) {
       state.cart = [];
-    }, 
+    },
   },
   actions: {
     fetchProducts({ commit }) {
@@ -159,17 +163,27 @@ export default new Vuex.Store({
       })
       return successSignUp;
     },
-    signIn({ commit }, id) {
-      UserService.getUserById(id).then((response) => {
-        commit('SET_USERS', { id: response.data.id })
-        if (response.data.cart != null && response.data.cart.length > 0) {
-          VueRouter.push({ name: 'cart' })
-        } else {
-          VueRouter.push({ name: 'home' })
-        }
-      }).catch((error) => {
-        console.error(error.message)
-      })
+    signIn({ commit }, {email, password}) {
+      UserService.getUsers().then((res) => {
+
+        res.data.forEach((user) => {
+          if(user.email === email && user.password === password){
+            sessionStorage.setItem("user", user.id);
+            commit('SET_USERS', { id: user.id })
+            if (user.cart != null && user.cart.length > 0) {
+              VueRouter.push({ name: 'cart' })
+            } else {
+              VueRouter.push({ name: 'home' })
+            }
+          }
+        })
+        // UserService.getUserById(id).then((response) => {
+         
+        // }).catch((error) => {
+        //   console.error(error.message)
+        // })
+      }).catch((error) => { console.error(error.message) })
+
     },
     getUsers({ commit }, email) {
       UserService.getUsers().then((response) => {
@@ -181,7 +195,7 @@ export default new Vuex.Store({
     setProductInCart({ commit }, { product, id }) {
       UserService.getUserById(id).then((response) => {
         commit('SET_USER', { id: response.data.id });
-        product = {...product,quantity: 1};
+        product = { ...product, quantity: 1 };
         let cartItem = [product];
         if (response.data.cart != null) {
           cartItem = [...response.data.cart, product];
@@ -190,7 +204,7 @@ export default new Vuex.Store({
           id: response.data.id,
           username: response.data.username,
           password: response.data.password, email: response.data.email,
-          cart: cartItem 
+          cart: cartItem
         };
 
 
@@ -198,7 +212,7 @@ export default new Vuex.Store({
 
           UserService.putUser(user).then(() => {
             commit('SET_PRODUCT_TO_CART', response.data, product)
-            commit('SET_CART',response.data.cart)
+            commit('SET_CART', response.data.cart)
           }).catch((error) => {
             console.error(error.message)
           })
@@ -229,7 +243,7 @@ export default new Vuex.Store({
       ProductService.getProduct(id)
         .then((response) => {
 
-          if (response.data.reviews != null) {            
+          if (response.data.reviews != null) {
             this.state.reviews = [...response.data.reviews, review];
           }
           else {
@@ -244,12 +258,12 @@ export default new Vuex.Store({
                     commit('SET_PRODUCT', response.data);
                   })
                   .catch((error) => {
-                    console.error( error.message)
+                    console.error(error.message)
                   });
-                
+
               })
           } catch (error) {
-            console.log( error);
+            console.log(error);
           }
         })
         .catch((error) => {
@@ -257,6 +271,16 @@ export default new Vuex.Store({
         });
 
     },
+    getProductById({ commit }, id) {
+      ProductService.getProduct(id)
+        .then((response) => {
+
+          commit('SET_PRODUCT', response.data)
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    }
 
 
 

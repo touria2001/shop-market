@@ -7,20 +7,19 @@
                 </ul>
               </p>
                 <div class="form-group">
-        <label class="label-rating" for="avis"  >Rating:</label>
+        
         <div class="stars">
-        <div class="rating" v-for="i in ratingArr" :key="i" >
-          <input type="radio" name="rating" :id="i" :value="i" v-model="picked" :class="  isActive == i ? 'active__star':''" @click="isActive = i" /><label :for="i"
+        <!-- <div class="rating" v-for="i in ratingArr" :key="i" >
+          <input  type="radio" name="rating" :id="i" :value="i" v-model="picked" :class="  isActive == i ? 'active__star':''" @click="isActive = i" /><label :for="i"
             class="star"
             >&#9733;</label
           >
+        </div> -->
+        <div class="margin__rating" >
+            <AwesomeVueStarRating :star="this.star" :disabled="this.disabled" :maxstars="this.maxstars" :starsize="this.starsize" :hasresults="this.hasresults" :hasdescription="this.hasdescription" :ratingdescription="this.ratingdescription" />
+</div>
         </div>
-        </div>
-        <p v-if="errorsPicked.length">    
-                <ul class="ul-error ">
-                  <li v-for="error in errorsPicked" >{{ error }}</li>
-                </ul>
-              </p>
+        
       </div>
     <div class="send__direction">
       <textarea
@@ -43,7 +42,11 @@
 
 <script>
 import Validate from "@/validation/Validate";
+import AwesomeVueStarRating from "awesome-vue-star-rating";
 export default {
+  components: {
+    AwesomeVueStarRating,
+  },
   props: {
     id: {
       type: Number,
@@ -54,12 +57,39 @@ export default {
     return {
       name: null,
       review: null,
-      picked: null,
+      
       errorsName: [],
       errorsReview: [],
-      errorsPicked: [],
       ratingArr: [1, 2, 3, 4, 5],
       isActive: null,
+      star: 5, // default star
+      ratingdescription: [
+        {
+          text: "Poor",
+          class: "star-poor",
+        },
+        {
+          text: "Below Average",
+          class: "star-belowAverage",
+        },
+        {
+          text: "Average",
+          class: "star-average",
+        },
+        {
+          text: "Good",
+          class: "star-good",
+        },
+        {
+          text: "Excellent",
+          class: "star-excellent",
+        },
+      ],
+      hasresults: true,
+      hasdescription: false,
+      starsize: "lg", //[xs,lg,1x,2x,3x,4x,5x,6x,7x,8x,9x,10x],
+      maxstars: 5,
+      disabled: false,
     };
   },
   methods: {
@@ -67,18 +97,16 @@ export default {
       e.preventDefault();
 
       this.errorsName = Validate.fieldIsEmpty(this.name, "Name field");
-      this.errorsReview = Validate.fieldIsEmpty(this.review, "Review field");
-      this.errorsPicked = Validate.fieldIsEmpty(this.picked, "star field");
-
+      this.errorsReview = Validate.fieldIsEmpty(this.review, "Review field");      
+      let picked = document.querySelector(".rating >span").textContent.charAt(0);
       if (
         this.errorsName.length === 0 &&
-        this.errorsReview.length === 0 &&
-        this.errorsPicked.length === 0 &&
-        this.picked !== null
+        this.errorsReview.length === 0 
+      
       ) {
         const newReview = {
           name: this.name,
-          rating: parseInt(this.picked),
+          rating: parseInt(picked),
           review: this.review,
         };
 
@@ -86,27 +114,27 @@ export default {
 
         this.$data.name = "";
         this.$data.review = "";
-        this.$data.picked = "";
+      
       }
     },
 
     deleteErrors(str) {
-     
       if (str === "name") {
         this.errorsName = [];
       }
       if (str === "review") {
         this.errorsReview = [];
       }
-      
     },
   },
 };
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
 
+.margin__rating {
+  margin-top: 10px;
+}
 .label-rating {
   color: white;
 }
@@ -151,15 +179,26 @@ input[type="radio"] {
   border-radius: 35px;
   border: none;
   margin-bottom: 20px;
+  margin: 3rem 0 0 0;
+
+  background: #fefbfb;
+
+  line-height: 1.6;
+  font-family: "Russo One", sans-serif;
+
+  font-weight: 400;
+  font-size: 15px;
+  color: #5b5757;
+  text-align: center;
 }
 .name::placeholder {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "poppins", sans-serif;
   font-weight: 900;
   font-size: 17px;
   text-align: center;
   margin-bottom: 2rem;
 }
 .margin-review {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 </style>

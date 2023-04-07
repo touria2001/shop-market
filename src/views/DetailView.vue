@@ -1,22 +1,41 @@
 <template>
+<loader />
   <main class="l-main">
     <section class="share bd-container section detail" id="share">
       <div class="share__container bd-grid">
         <div class="share__data">
           <h2 class="section-title-center">{{ product.title }}</h2>
-          <div class="reviews">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
+          <AwesomeVueStarRating
+            v-if="product.reviews"
+            :star="
+              Math.round(
+                product.reviews.reduce((acc, review) => {
+                  acc += review.rating;
+                  return acc;
+                }, 0) / product.reviews.length
+              )
+            "
+            :disabled="this.disabled"
+            :maxstars="this.maxstars"
+            :starsize="this.starsize"
+            :hasresults="this.hasresults"
+            :hasdescription="this.hasdescription"
+            :ratingdescription="this.ratingdescription"
+          />
+
+          <div class="reviews" v-else>
             <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <span class="description__rating">(no rating yet)</span>
           </div>
+
           <p class="share__description">
             {{ product.description }}
           </p>
-          
-         
-          <button-shop-now text="shop now" @event-click="addToCart(product)"/>
+          <button-shop-now text="shop now" @event-click="addToCart(product)" />
         </div>
 
         <div class="share__img">
@@ -44,11 +63,10 @@
       </div>
       <!--testimonials-box-container------>
       <div class="testimonial-box-container">
-        <div v-if="product.reviews != null">
-           <Review v-for="review in product.reviews" :review="review" />
+        <div v-if="product.reviews != null" class="container-reviews">
+          <Review v-for="review in product.reviews" :review="review" />
         </div>
         <div v-else>no reviews yet</div>
-       
       </div>
     </section>
   </main>
@@ -58,37 +76,69 @@
 import ButtonShopNow from "@/components/ButtonShopNow.vue";
 import Review from "@/components/Review.vue";
 import Quantity from "@/components/Quantity.vue";
-import ProductService from "@/services/ProductService";
-import Cookie from "@/cookies/Cookie";
 import VueRouter from "@/router/index";
-import AddReview from '@/components/AddReview.vue';
+import AddReview from "@/components/AddReview.vue";
+import { mapState } from "vuex";
+import AwesomeVueStarRating from "awesome-vue-star-rating";
+import Loader from '@/components/Loader.vue';
 export default {
-  components: { ButtonShopNow, Review, Quantity, AddReview },
-  props: ["id"],
+  components: {
+    ButtonShopNow,
+    Review,
+    Quantity,
+    AddReview,
+    AwesomeVueStarRating,
+    Loader,
+  },
+
   data() {
     return {
-      product: {},
+      id: null,
+
+      ratingdescription: [
+        {
+          text: "Poor",
+          class: "star-poor",
+        },
+        {
+          text: "Below Average",
+          class: "star-belowAverage",
+        },
+        {
+          text: "Average",
+          class: "star-average",
+        },
+        {
+          text: "Good",
+          class: "star-good",
+        },
+        {
+          text: "Excellent",
+          class: "star-excellent",
+        },
+      ],
+      hasresults: false,
+      hasdescription: false,
+      starsize: "lg", //[xs,lg,1x,2x,3x,4x,5x,6x,7x,8x,9x,10x],
+      maxstars: 5,
+      disabled: false,
     };
   },
   created() {
-    ProductService.getProduct(this.id)
-      .then((response) => (this.product = response.data))
-      .catch((error) => {
-        console.log(error.response);
-      });
-      
+    this.id = this.$route.params.id;
+    this.$store.dispatch("getProductById", this.id);
   },
+  computed: mapState(["product"]),
   methods: {
-    addToCart(product) {     
-      if (sessionStorage.getItem("user") != null) {      
-        this.$store.dispatch(
-          "setProductInCart",
-          {product:product,
-          id: sessionStorage.getItem("user")}
-        );
-       VueRouter.push({ name: 'cart' });
+    addToCart(product) {
+      if (sessionStorage.getItem("user") != null) {
+        this.$store.dispatch("setProductInCart", {
+          product: product,
+          id: sessionStorage.getItem("user"),
+        });
+        VueRouter.push({ name: "cart" });
       } else {
-        VueRouter.push({ name: 'sign-in' });
+        VueRouter.push({ name: "sign-in" });
       }
     },
   },
@@ -96,6 +146,11 @@ export default {
 </script>
 
 <style>
+.description__rating {
+  color: #202020;
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+}
 .share__img {
   display: flex;
   justify-content: center;
@@ -139,6 +194,10 @@ export default {
 .quantity {
   margin-left: 10px;
 }
+.container-reviews {
+  display: flex;
+  flex-wrap: wrap;
+}
 @media only screen and (max-width: 1200px) {
   .minus-btn,
   .plus-btn {
@@ -161,6 +220,9 @@ export default {
   .detail {
     padding-left: 20px;
     padding-right: 20px;
+  }
+  .container-reviews {
+    justify-content: center;
   }
 }
 * {
@@ -210,7 +272,7 @@ a {
   width: 100%;
 }
 .testimonial-box {
-  width: 500px;
+  max-width: 500px;
   box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   padding: 20px;
@@ -267,7 +329,6 @@ a {
 
 @media (max-width: 1060px) {
   .testimonial-box {
-    width: 45%;
     padding: 10px;
   }
 }

@@ -661,7 +661,17 @@ img {
 .nav__item {
   position: relative;
 }
-
+.active__link::before{
+    content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: #da2535;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
 .nav__item:active::before {
   content: "";
   position: absolute;

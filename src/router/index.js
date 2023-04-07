@@ -6,7 +6,7 @@ import ProductsView from '../views/ProductsView.vue'
 import CartView from '../views/CartView.vue'
 import SignInView from '../views/SignInView.vue'
 import CheckOutView from '../views/CheckOutView.vue'
-import  OrderConfirmedView from '../views/OrderConfirmedView.vue'
+import OrderConfirmedView from '../views/OrderConfirmedView.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +15,7 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+    
   },
   {
     path: '/detail/:id',
@@ -45,16 +46,21 @@ const routes = [
   },
   {
     path: '/confirmed-order',
-    name:'OrderConfirmed',
+    name: 'OrderConfirmed',
     component: OrderConfirmedView
   }
-  
+
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
+  next();
 })
 
 export default router

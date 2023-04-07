@@ -36,7 +36,7 @@
               <ul>
                 <li>
                   Total
-                  <span class="new__price">$   {{
+                  <span class="new__price" v-if="cart != null">$   {{
                 cart.reduce(
                   (acc, item) => acc + item.price * item.quantity,
                   0
