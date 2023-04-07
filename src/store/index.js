@@ -10,7 +10,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: {},
+    user: null,
     users: [],
     categories: [],
     products: [],
@@ -169,7 +169,8 @@ export default new Vuex.Store({
         res.data.forEach((user) => {
           if(user.email === email && user.password === password){
             sessionStorage.setItem("user", user.id);
-            commit('SET_USERS', { id: user.id })
+            commit('SET_USER', { id: user.id })
+           
             if (user.cart != null && user.cart.length > 0) {
               VueRouter.push({ name: 'cart' })
             } else {
@@ -177,11 +178,7 @@ export default new Vuex.Store({
             }
           }
         })
-        // UserService.getUserById(id).then((response) => {
-         
-        // }).catch((error) => {
-        //   console.error(error.message)
-        // })
+        
       }).catch((error) => { console.error(error.message) })
 
     },
@@ -210,9 +207,9 @@ export default new Vuex.Store({
 
         if ((response.data.cart != null && !response.data.cart.some((p) => p.id === product.id) || response.data.cart == null)) {
 
-          UserService.putUser(user).then(() => {
+          UserService.putUser(user).then((res) => {
             commit('SET_PRODUCT_TO_CART', response.data, product)
-            commit('SET_CART', response.data.cart)
+            commit('SET_CART', res.data.cart)
           }).catch((error) => {
             console.error(error.message)
           })
@@ -239,7 +236,6 @@ export default new Vuex.Store({
         })
     },
     addReview({ commit }, { id, review }) {
-
       ProductService.getProduct(id)
         .then((response) => {
 
@@ -280,6 +276,9 @@ export default new Vuex.Store({
         .catch((error) => {
           console.log(error.response);
         });
+    },
+    logout() {
+      commit('SET_USER', null)
     }
 
 

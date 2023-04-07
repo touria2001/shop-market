@@ -371,7 +371,14 @@ body {
   font-size: 17px;
   padding: 8px;
 }
-
+.ul-error {
+  list-style: square;
+  color: red;
+  margin-top: -0.8em;
+  margin-bottom: 0.8em;
+  font-size: 0.7rem;
+  margin-left: 20px;
+}
 * {
   box-sizing: border-box;
 }

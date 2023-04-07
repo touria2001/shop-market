@@ -10,44 +10,26 @@
         <ul class="nav-list">
           <li class="nav__item">
             <router-link to="/" exact-active-class="active__link">
-              <a  
-                href=""
-                class="nav__link"
-                
-                >Home</a
-              ></router-link
+              <a href="" class="nav__link">Home</a></router-link
             >
           </li>
           <li class="nav__item">
             <router-link to="/products" exact-active-class="active__link"
-              ><a
-                href="#share"
-                class="nav__link"
-               
-              
-                >Products</a
-              ></router-link
+              ><a href="#share" class="nav__link">Products</a></router-link
             >
           </li>
           <li class="nav__item">
             <router-link to="/#decoration" exact-active-class="active__link"
-              ><a  
-                href=""
-                class="nav__link"
-               
-                >Categories</a
-              ></router-link
+              ><a href="" class="nav__link">Categories</a></router-link
             >
           </li>
-          <li class="nav__item">
+          <li class="nav__item" v-if="login">
             <router-link to="/sign-in" exact-active-class="active__link"
-              ><a  
-                href=""
-                class="nav__link"
-               
-                >Login</a
-              ></router-link
+              ><a href="" class="nav__link">Login</a></router-link
             >
+          </li>
+          <li class="nav__item" v-else @click="logout()">
+            <a href="" class="nav__link">Log out</a>
           </li>
           <router-link to="/cart" exact-active-class="active__link"
             ><li>
@@ -71,12 +53,23 @@ export default {
   data() {
     return {
       showMobileMenu: false,
-     
     };
+  },
+ 
+  computed: {
+    login() {
+      return  this.$store.state.user == null;
+    },
   },
   methods: {
     showMenu() {
       this.showMobileMenu = !this.showMobileMenu;
+    },
+    logout() {
+      sessionStorage.removeItem("email");
+      sessionStorage.removeItem("user");
+       this.$store.dispatch("logout");
+      
     },
   },
 };

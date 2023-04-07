@@ -41,7 +41,7 @@
                   (acc, item) => acc + item.price * item.quantity,
                   0
                 ) 
-              }}</span></li>
+              }}</span> <span v-else>$0</span></li>
                
                 
               </ul>

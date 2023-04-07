@@ -36,6 +36,7 @@
             <p class="share__description">
               {{ product.description }}
             </p>
+            <p class="price">Price: {{ product.price }}$</p>
             <button-shop-now
               text="shop now"
               @event-click="addToCart(product)"
@@ -151,6 +152,12 @@ export default {
 </script>
 
 <style>
+.price {
+      font-size: 1.1rem;
+    font-weight: 900;
+    color: #161212;
+    margin-bottom: 1.5rem;
+}
 .description__rating {
   color: #202020;
   margin-left: 0.5rem;
