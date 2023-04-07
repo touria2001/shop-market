@@ -249,9 +249,11 @@ export default {
       }
       if (str === "emailSignIn") {
         this.errorsEmailSignIn = [];
+        this.failedLogin = [];
       }
       if (str === "passwordSignIn") {
         this.errorsPasswordSignIn = [];
+        this.failedLogin = [];
       }
     },
     rememberMe() {
